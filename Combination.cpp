@@ -1,8 +1,3 @@
-#include <bits/stdc++.h>
-#include <atcoder/modint>
-using namespace std;
-//------------------------------------
-
 template<typename T> struct is_static_modint : false_type {};
 template<int M, enable_if_t<(1<=M)>* Ptr>
   struct is_static_modint<atcoder::static_modint<M,Ptr>> : true_type {};
@@ -33,9 +28,3 @@ template<static_modint mint> struct Combination{
         return (fac[n]*finv[k]*finv[n-k]).val();
     }
 };
-
-int main(){
-    Combination<atcoder::static_modint<1000000009>> comb(30);
-    cout<<comb.calc(10,8)<<'\n'<<comb.calc(5,3)<<endl;
-    cout<<comb.calc(0,1)<<'\n';
-}
