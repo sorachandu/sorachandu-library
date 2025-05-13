@@ -1,5 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
+// Example usage:
+// aの降順にソートしてbを合わせる
+// vector<pair<int,int>> v{a,b}をsortするのと等価
+// multipleSort(less(),a,b);
+
+// multipleSort(greater(),a,b);
+// vector index=multipleSort(less(),u,v,w);
+
 
 
 // This function sorts multiple vectors based on the first vector
@@ -27,13 +35,3 @@ vector<size_t> multipleSort(Compare comp = Compare(), Vectors&... vectors) {
     (reorder(vectors), ...);
     return indices;
 }
-
-
-
-// Example usage:
-// aの降順にソートしてbを合わせる
-// vector<pair<int,int>> v{a,b}をsortするのと等価
-// multipleSort(less(),a,b);
-
-// multipleSort(greater(),a,b);
-// vector index=multipleSort(less(),u,v,w);

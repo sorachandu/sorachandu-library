@@ -1,3 +1,5 @@
+#include<bits/stdc++.h>
+#include<atcoder/modint>
 template<typename T> struct is_static_modint : false_type {};
 template<int M, enable_if_t<(1<=M)>* Ptr>
   struct is_static_modint<atcoder::static_modint<M,Ptr>> : true_type {};
