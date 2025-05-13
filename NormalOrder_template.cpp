@@ -53,9 +53,11 @@ template<typename T> inline bool chmin(T &a,T b){return a>b?a=b,true:false;}
 template<typename T> inline bool chmax(T &a,T b){return a<b?a=b,true:false;}
 
 // a^bを返す オーバーフローに注意
-inline ll Pow(ll a,ll b){
+template<typename T,typename U> inline T Pow(T a,U b){
     assert(b>=0);
-    ll res=1;
+    T res=1;
+    if(a==0 or a==1) return 1;
+    if(a==-1) return (b&1)?-1:1;
     while(b){
         if(b&1) res*=a;
         b>>=1;
