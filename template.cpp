@@ -42,6 +42,21 @@ std::ostream &operator<< (std::ostream &os, std::pair<T1,T2> p){
     return os;
 }
 
+// a^bを返す オーバーフローに注意
+inline ll Pow(ll a,ll b){
+    assert(b>=0);
+    if(a==0 and b==0) return 1;
+    if(a==1) return 1;
+    if(a==-1) return (b&1)?-1:1;
+    ll res=1;
+    while(b){
+        if(b&1) res*=a;
+        b>>=1;
+        if(b) a*=a;
+    }
+    return res;
+}
+
 // 配列の要素を空白区切りで出力 第二引数をtrueにすると改行区切り
 template<typename T> inline void print_vec(const vector<T> &v, bool split_line=false) {
     if(v.empty()){
@@ -130,5 +145,31 @@ class Random_Gen{
         }
         int64_t operator()(){ return gen(); }
 };
+
+// This function sorts multiple vectors based on the first vector
+// and returns the indices of the sorted order.
+// Note: First argument is a comparison function.
+template <typename Compare, typename... Vectors>
+vector<size_t> multipleSort(Compare comp = Compare(), Vectors&... vectors) {
+    const size_t size = std::get<0>(std::tie(vectors...)).size();
+    ((void)std::initializer_list<int>{(vectors.size() == size ? 0 : 
+        throw std::invalid_argument("Vectors must have the same size"))...});
+
+    std::vector<size_t> indices(size);
+    std::iota(indices.begin(), indices.end(), 0);
+
+    std::sort(indices.begin(), indices.end(), [&](size_t i, size_t j) {
+        return comp(std::tie(vectors[i]...), std::tie(vectors[j]...));
+    });
+
+    auto reorder = [&](auto& vec) {
+        auto temp=vec;
+        for (size_t i = 0; i < size; ++i) {
+            vec[i] = temp[indices[i]];
+        }
+    };
+    (reorder(vectors), ...);
+    return indices;
+}
 
 #endif
