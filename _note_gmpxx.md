@@ -1,6 +1,8 @@
 GMPとかいう便利な数値もにょもにょライブラリがあるらしい. 多倍長整数とか有理数型があるらしい
-文献を漁るのがだるいのでChatGpt o4-miniに聞いた. mpz_class用のpow関数(扱いやすくした版)を付録程度に
+文献を漁るのがだるいのでChatGpt o4-miniに聞いた.
 
+mpz_class用のpow関数(扱いやすくした版)を付録程度に置く
+```cpp
 // base^expをmpz_class型で計算
 // 注意: baseはmpz_class型
 inline mpz_class mpz_pow(mpz_class base, uint64_t Exp){
@@ -8,6 +10,7 @@ inline mpz_class mpz_pow(mpz_class base, uint64_t Exp){
     mpz_pow_ui(res.get_mpz_t(),base.get_mpz_t(),Exp);
     return res;
 }
+```
 
 
 sorachandu: The GNU Multiple Precision Arithmetic Library (GMP) についての解説及びinclude方法を教えてもらえますか.
