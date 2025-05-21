@@ -133,8 +133,11 @@ r.canonicalize();             // 明示的に既約化
 ````cpp
 mpq_class a(1,3), b(1,6);
 mp
+````
 
-[regenerate]
+---
+
+[回答止まったのでregenerate]
 
 GMP の C++ ラッパークラスには主に以下の 3 つがあります。  
 
@@ -198,7 +201,7 @@ auto q = z.get_den();            // 15
 std::string zs = z.get_str(10);  // "11/15"
 ````
 
----;
+---
 
 ## 3. mpf_class（浮動小数点）  
 
@@ -225,12 +228,12 @@ std::string s = c.get_str(10, 20);     // 10 進 20 桁
 double d = c.get_d();                  // double にキャスト
 ````
 
----;
+---
 
 以上を組み合わせることで，大きな整数計算／厳密有理数計算／任意精度浮動小数点計算が容易に行えます。  
 必要に応じて `<gmp.h>`（C API）も併用可能ですが，C++ ではラッパーを使うのが便利です。
 
----;
+---
 
 sorachandu:(mpz_class).pow_uiは存在しないようです. 代わりに存在するmpz_pow_uiについて教えていただけますか.
 
