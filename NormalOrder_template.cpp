@@ -33,6 +33,9 @@ std::ostream &operator<< (std::ostream &os, std::pair<T1,T2> p){
     return os;
 }
 
+template<typename T> inline bool chmin(T &a,T b){return a>b?a=b,true:false;}
+template<typename T> inline bool chmax(T &a,T b){return a<b?a=b,true:false;}
+
 // a^bを返す オーバーフローに注意
 inline ll Pow(ll a,ll b){
     assert(b>=0);
