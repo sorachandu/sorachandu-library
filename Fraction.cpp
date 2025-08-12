@@ -64,6 +64,12 @@ struct frac{
         if(isNaN()) return *this;
         return frac(std::abs(num), den);
     }
+
+    // (乗法における) 逆元
+    frac inv() const {
+        if(isNaN()) return *this;
+        return frac(den, num);
+    }
     
     // 符号反転
     frac operator-() const {
@@ -108,7 +114,6 @@ struct frac{
     bool operator<=(const frac& other) const { return *this < other || *this == other; }
     bool operator>(const frac& other) const { return !(*this <= other); }
     bool operator>=(const frac& other) const { return !(*this < other); }
-
 };
 
 std::ostream& operator<<(std::ostream& os, const frac& f) {
