@@ -14,6 +14,7 @@ template<typename T> using minpq=priority_queue<T,vector<T>,greater<T>>;
 #define Yes cout << "Yes" << el
 #define No cout << "No" << el
 
+
 ull h,w;
 // 場外判定
     auto outof = [&](ull y, ull x){
