@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); cout << setprecision(13); } }_init;
+struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); cout << setprecision(13); } }init;
 
 using ll = long long;
 using ull = unsigned long long;
@@ -8,19 +8,18 @@ using pii = pair<int,int>;
 using pll = pair<ll,ll>;
 template<typename T> using minpq=priority_queue<T,vector<T>,greater<T>>;
 
-#define rep(i, x, limit) for (int i = (x); i < (limit); i++)
-#define REP(i, x, limit) for (int i = (x); i <= (limit); i++)
-#define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
+#define rep(i, x, limit) for(int i=(x); i< (limit); ++i)
+#define REP(i, x, limit) for(int i=(x); i<=(limit); ++i)
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
 #define el '\n'
 #define spa ' '
-#define Yes cout << "Yes" << el
-#define No cout << "No" << el
-#define YES cout << "YES" << el
-#define NO cout << "NO" << el
-#define eps (1e-10)
-#define Equals(a,b) (fabs((a) - (b)) < eps )
-#define debug(x) cerr << #x << " = " << x << el
+#define Yes cout<<"Yes"<<el
+#define No  cout<<"No" <<el
+#define YES cout<<"YES"<<el
+#define NO  cout<<"NO" <<el
+#define END(x) cout<<(x)<<el, exit(0)
+#define debug(x) cerr<<#x<<" = "<<x<<el
 
 const int inf = 1073741823;
 const ll infl = 1LL << 60;
