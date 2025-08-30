@@ -60,6 +60,13 @@ struct rolling_hash{
 			u64 ret = MOD + Hash[r] - mul(Hash[l],Pow[r-l]);
 			return ret<MOD ? ret : ret-MOD;
 		}
+
+		// return hash of s1+s2 (arguments are hash)
+		u64 concat(u64 h1, u64 h2, size_type h2_len) const {
+			u64 ret=mul(h1,Pow[h2_len])+h2;
+			return ret<MOD ? ret : ret-MOD;
+		}
+
 		size_type size() const { return str.size(); }
 };
 uint64_t rolling_hash::base;
