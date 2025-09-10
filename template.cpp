@@ -68,9 +68,12 @@ template<typename T> inline void print_vec(const vector<T> &v, bool split_line=f
 // Pythonのenumerateみたいなやつ　[index,value]を範囲for文に提供
 template<typename T> inline vector<pair<int,T>> enumerate(const vector<T> &v){
     vector<pair<int,T>> res(ssize(v));
-    for(int i=0;i<ssize(v);i++){
-        res[i]={i,v[i]};
-    }
+    for(int i=0;i<ssize(v);i++) res[i]={i,v[i]};
+    return res;
+}
+inline vector<pair<int,char>> enumerate(const string &s){
+    vector<pair<int,char>> res(ssize(s));
+    for(int i=0;i<ssize(s);i++) res[i]={i,s[i]};
     return res;
 }
 
