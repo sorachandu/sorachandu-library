@@ -65,6 +65,15 @@ template<typename T> inline void print_vec(const vector<T> &v, bool split_line=f
     }
 }
 
+// Pythonのenumerateみたいなやつ　[index,value]を範囲for文に提供
+template<typename T> inline vector<pair<int,T>> enumerate(const vector<T> &v){
+    vector<pair<int,T>> res(ssize(v));
+    for(int i=0;i<ssize(v);i++){
+        res[i]={i,v[i]};
+    }
+    return res;
+}
+
 // This function sorts multiple vectors based on the first vector
 // and returns the indices of the sorted order.
 // Note: First argument is a comparison function.
