@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
+#pragma region templates
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); cout << setprecision(13); } }init;
+
 
 using ll = long long;
 using ull = unsigned long long;
@@ -21,14 +23,90 @@ template<typename T> using minpq=priority_queue<T,vector<T>,greater<T>>;
 #define END(x) cout<<(x)<<el, exit(0)
 #define debug(x) cerr<<#x<<" = "<<x<<el
 
-const int inf = 1073741823;
-const ll infl = 1LL << 60;
-const string ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string abc = "abcdefghijklmnopqrstuvwxyz";
+[[maybe_unused]] const int inf = 1073741823;
+[[maybe_unused]] const ll infl = 1LL << 60;
 
+// std::pair
 template<typename T1, typename T2>
 std::ostream &operator<< (std::ostream &os, std::pair<T1,T2> p){
     os << "{" << p.first << "," << p.second << "}";
+    return os;
+}
+// std::vector
+template<typename T> std::ostream &operator<< (std::ostream &os, const std::vector<T> &v){
+    os << "[";
+    for(auto iter=v.begin();iter!=v.end();) os << *iter << (++iter!=v.end()?", ":"");
+    os << "]";
+    return os;
+}
+// std::stack
+template<typename T> std::ostream &operator<< (std::ostream &os, std::stack<T> st){
+    os << "[";
+    while(!st.empty()){ T e=st.top(); st.pop(); os << e << (!st.empty()?", ":""); }
+    os << "]";
+    return os;
+}
+// std::queue
+template<typename T> std::ostream &operator<< (std::ostream &os, std::queue<T> q){
+    os << "[";
+    while(!q.empty()){ T e=q.front(); q.pop(); os << e << (!q.empty()?", ":""); }
+    os << "]";
+    return os;
+}
+// std::priority_queue
+template<typename T> std::ostream &operator<< (std::ostream &os, std::priority_queue<T> pq){
+    os << "[";
+    while(!pq.empty()){ T e=pq.top(); pq.pop(); os << e << (!pq.empty()?", ":""); }
+    os << "]";
+    return os;
+}
+// minpq
+template<typename T> std::ostream &operator<< (std::ostream &os, minpq<T> pq){
+    os << "[";
+    while(!pq.empty()){ T e=pq.top(); pq.pop(); os << e << (!pq.empty()?", ":""); }
+    os << "]";
+    return os;
+}
+// std::deque
+template<typename T> std::ostream &operator<< (std::ostream &os, const std::deque<T> &dq){
+    os << "[";
+    for(auto iter=dq.begin();iter!=dq.end();) os << *iter << (++iter!=dq.end()?", ":"");
+    os << "]";
+    return os;
+}
+// std::array
+template<typename T, size_t N> std::ostream &operator<< (std::ostream &os, const std::array<T,N> &arr){
+    os << "[";
+    for(size_t i=0;i<N;i++) os << arr[i] << (i+1!=N?", ":"");
+    os << "]";
+    return os;
+}
+// std::set
+template<typename T> std::ostream &operator<< (std::ostream &os, const std::set<T> &st){
+    os << "{";
+    for(auto iter=st.begin();iter!=st.end();) os << *iter << (++iter!=st.end()?", ":"");
+    os << "}";
+    return os;
+}
+// std::map
+template<typename T1, typename T2> std::ostream &operator<< (std::ostream &os, const std::map<T1,T2> &mp){
+    os << "{";
+    for(auto iter=mp.begin();iter!=mp.end();) os << iter->first << ":" << iter->second << (++iter!=mp.end()?", ":"");
+    os << "}";
+    return os;
+}
+// std::unordered_set
+template<typename T> std::ostream &operator<< (std::ostream &os, const std::unordered_set<T> &st){
+    os << "{";
+    for(auto iter=st.begin();iter!=st.end();) os << *iter << (++iter!=st.end()?", ":"");
+    os << "}";
+    return os;
+}
+// std::multiset
+template<typename T> std::ostream &operator<< (std::ostream &os, const std::multiset<T> &st){
+    os << "{";
+    for(auto iter=st.begin();iter!=st.end();) os << *iter << (++iter!=st.end()?", ":"");
+    os << "}";
     return os;
 }
 
@@ -48,21 +126,6 @@ inline ll Pow(ll a,ll b){
         if(b) a*=a;
     }
     return res;
-}
-
-// 配列の要素を空白区切りで出力 第二引数をtrueにすると改行区切り
-template<typename T> inline void print_vec(const vector<T> &v, bool split_line=false) {
-    if(v.empty()){
-        cout << "This vector is empty." << el;
-        return;
-    }
-    constexpr bool isValue = is_integral<T>::value;
-    for (int i = 0; i < (int)v.size(); i++) {
-        if constexpr(isValue){
-            if((v[i]==inf) || (v[i]==infl)) cout << 'x' << " \n"[split_line || i+1==(int)v.size()];
-            else cout << v[i] << " \n"[split_line || i+1==(int)v.size()];
-        }else cout << v[i] << " \n"[split_line || i+1==(int)v.size()];
-    }
 }
 
 // Pythonのenumerateみたいなやつ　[index,value]を範囲for文に提供
@@ -102,6 +165,10 @@ vector<size_t> multipleSort(Compare comp = Compare(), Vectors&... vectors) {
     (reorder(vectors), ...);
     return indices;
 }
+
+#pragma endregion templates
+
+
 
 int main(){
     
