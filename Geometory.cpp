@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-#define eps (1e-10)
+using ll = long long;
+const double eps=1e-10;
 #define Equals(a,b) (fabs((a) - (b)) < eps )
 //-----------------------------------------------------------
 
-struct Point { 
+
+struct Point {
     double x,y;
     Point(double x = 0, double y = 0): x(x), y(y) {}
 
@@ -14,7 +15,7 @@ struct Point {
     Point operator * (double a) { return Point(x*a, y*a); }
     Point operator / (double a) { return Point(x/a, y/a); }
 
-    double magnitude() { return sqrt(norm()); }
+    double abs() { return sqrt(norm()); }
     double norm() { return x*x + y*y; }
 
     bool operator < (const Point &p) const {
@@ -26,13 +27,17 @@ struct Point {
     bool operator == (const Point &p) const {
         return fabs(x-p.x) < eps && fabs(y-p.y) < eps;
     }
+
+    friend istream& operator>>(istream& is, Point& p) {
+        return is >> p.x >> p.y;
+    }
 };
-typedef Point Vector;
+using Vector = Point;
 
 struct Segment{
     Point p1, p2;
 };
-typedef Segment Line;
+using Line = Segment;
 
 struct Circle{
     Point c;
@@ -40,7 +45,7 @@ struct Circle{
     Circle(Point c = Point(), double r = 0.0): c(c), r(r) {}
 };
 
-typedef vector<Point> Polygon;
+using Polygon = vector<Point>;
 
 double Dot(Vector a, Vector b){
     return a.x * b.x + a.y * b.y;
@@ -48,6 +53,12 @@ double Dot(Vector a, Vector b){
 
 double Cross(Vector a, Vector b){
     return a.x*b.y - a.y*b.x;
+}
+
+double getDistanceStoP(Segment s,Point p){
+    if(Dot(s.p2-s.p1, p-s.p1) < 0.0) return (p-s.p1).abs();
+    if(Dot(s.p1-s.p2, p-s.p2) < 0.0) return (p-s.p2).abs();
+    return Cross(s.p2-s.p1, p-s.p1) / (s.p2-s.p1).abs();
 }
 
 static const int COUNTER_CLOCKWISE = 1;
