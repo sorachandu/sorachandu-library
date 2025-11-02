@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 // std::uniform_int_distributionを利用した一様乱数生成クラス
 class Random_Gen{
     random_device seed_gen;
@@ -26,7 +23,3 @@ class Random_Gen{
         }
         int64_t operator()(){ return gen(); }
 };
-
-int main(){
-    
-}

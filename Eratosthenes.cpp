@@ -1,8 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-//------------------------------------------------------------
-
 // エラトステネスの篩, 1以上N以下の整数について素数かどうか判定する
 vector<bool> Eratosthenes(ll N) {
     vector<bool> isprime(N + 1, true);

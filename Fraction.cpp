@@ -1,9 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-//----------------------------------
-
-
 struct frac{
     long long num,den;
     int8_t state;

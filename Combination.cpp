@@ -1,17 +1,13 @@
-#include<bits/stdc++.h>
-#include<atcoder/modint>
-//-----------------------------------
-
-
-
 template<typename T> struct is_static_modint : false_type {};
 template<int M, enable_if_t<(1<=M)>* Ptr>
   struct is_static_modint<atcoder::static_modint<M,Ptr>> : true_type {};
 template<typename T> concept static_modint = is_static_modint<T>::value;
 
-// nCkを任意の素数mod下で高速に計算する構造体
-// atcoder::static_modint<M>をテンプレート引数に取る
-// Tips: Combination<atcoder::modint998244353> comb(n)
+/***
+  nCkを任意の素数mod下で高速に計算する構造体
+  atcoder::static_modint<M>をテンプレート引数に取る
+  Tips: Combination<atcoder::modint998244353> comb(n)
+***/
 template<static_modint mint> struct Combination{
     vector<mint> fac,finv,inv;
     

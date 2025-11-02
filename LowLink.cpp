@@ -1,13 +1,10 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-/*
-LowLink　無向重みなしグラフについて関節点と橋を列挙
-Constructor: O(V+E)
-関節点の集合: vector<int> aps
-橋(の端点)の集合: vector<pair<int,int>> bridges
-reference: https://algo-logic.info/bridge-lowlink/
-*/
+/***
+  LowLink　無向重みなしグラフについて関節点と橋を列挙
+  Constructor: O(V+E)
+  関節点の集合: vector<int> aps
+  橋(の端点)の集合: vector<pair<int,int>> bridges
+  reference: https://algo-logic.info/bridge-lowlink/
+***/
 struct LowLink{
     using Graph=vector<vector<int>>;
     const Graph &G;

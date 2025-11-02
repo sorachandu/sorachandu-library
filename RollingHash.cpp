@@ -1,6 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-
 struct rolling_hash{
 	using u64 = uint64_t;
 	using size_type = uint32_t;

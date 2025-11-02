@@ -1,14 +1,9 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-
-
-
-/*  (隣接リスト形式)木 G に対する根を root として Lowest Common Ancestor を求める構造体
-    Gを直接渡さず辺を逐次追加してからbuildしてもよい
-    lca(u,v): u と v の LCA を求める。計算量 O(logn)
-    前処理: 時間O(nlogn), 空間O(nlogn)
-*/
+/***
+  (隣接リスト形式)木 G に対する根を root として Lowest Common Ancestor を求める構造体
+  Gを直接渡さず辺を逐次追加してからbuildしてもよい
+  lca(u,v): u と v の LCA を求める。計算量 O(logn)
+  前処理: 時間O(nlogn), 空間O(nlogn)
+***/
 class LCA{
     int n,logn;
     vector<int> depth,parent_edge_id;
