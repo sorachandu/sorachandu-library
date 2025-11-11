@@ -4,11 +4,13 @@
   refer: https://qiita.com/drken/items/cce6fc5c579051e64fab 
 ***/
 template<typename Abel> class PotentialUF{
+    int n;
     vector<int> par;
     vector<int> rank;
     vector<Abel> diff_potential;
 
     inline void init(int n, Abel SUM_UNITY){
+        this->n=n;
         par.resize(n);
         iota(par.begin(),par.end(),0);
         rank.resize(n,0);
@@ -51,5 +53,21 @@ template<typename Abel> class PotentialUF{
 
         inline Abel diff(int x,int y){
             return potential(y) - potential(x);
+        }
+
+        // refer to DSU on ACL
+        vector<vector<int>> groups(){
+            vector<int> leader_buf(n),group_size(n);
+            for(int i=0;i<n;i++){
+                leader_buf[i]=root(i);
+                group_size[leader_buf[i]]++;
+            }
+            vector<vector<int>> result(n);
+            for(int i=0;i<n;i++) result[i].reserve(group_size[i]);
+            for(int i=0;i<n;i++) result[leader_buf[i]].emplace_back(i);
+            result.erase(remove_if(result.begin(),result.end(),
+                                    [&](const vector<int> &v){return v.empty(); }),
+                         result.end());
+            return result;
         }
 };
