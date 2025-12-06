@@ -3,17 +3,17 @@ using namespace std;
 #pragma region templates
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); cout << setprecision(13); } }init;
 
-
-using ll = long long;
+using ll  = long long;
 using ull = unsigned long long;
 using pii = pair<int,int>;
 using pll = pair<ll,ll>;
+using i128= __int128_t;
 template<typename T> using minpq=priority_queue<T,vector<T>,greater<T>>;
 
 #define rep(i, x, limit) for(int i=(x); i< (limit); ++i)
 #define REP(i, x, limit) for(int i=(x); i<=(limit); ++i)
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+#define all(x) std::begin(x), std::end(x)
+#define rall(x) std::rbegin(x), std::rend(x)
 #define el '\n'
 #define spa ' '
 #define Yes cout<<"Yes"<<el
@@ -26,95 +26,159 @@ template<typename T> using minpq=priority_queue<T,vector<T>,greater<T>>;
 [[maybe_unused]] const int inf = 1073741823;
 [[maybe_unused]] const ll infl = 1LL << 60;
 
-// std::pair
-template<typename T1, typename T2>
-std::ostream &operator<< (std::ostream &os, std::pair<T1,T2> p){
-    os << "{" << p.first << "," << p.second << "}";
-    return os;
-}
-// std::vector
-template<typename T> std::ostream &operator<< (std::ostream &os, const std::vector<T> &v){
-    os << "[";
-    for(auto iter=v.begin();iter!=v.end();) os << *iter << (++iter!=v.end()?", ":"");
-    os << "]";
-    return os;
-}
-// std::stack
-template<typename T> std::ostream &operator<< (std::ostream &os, std::stack<T> st){
-    os << "[";
-    while(!st.empty()){ T e=st.top(); st.pop(); os << e << (!st.empty()?", ":""); }
-    os << "]";
-    return os;
-}
-// std::queue
-template<typename T> std::ostream &operator<< (std::ostream &os, std::queue<T> q){
-    os << "[";
-    while(!q.empty()){ T e=q.front(); q.pop(); os << e << (!q.empty()?", ":""); }
-    os << "]";
-    return os;
-}
-// std::priority_queue
-template<typename T> std::ostream &operator<< (std::ostream &os, std::priority_queue<T> pq){
-    os << "[";
-    while(!pq.empty()){ T e=pq.top(); pq.pop(); os << e << (!pq.empty()?", ":""); }
-    os << "]";
-    return os;
-}
-// minpq
-template<typename T> std::ostream &operator<< (std::ostream &os, minpq<T> pq){
-    os << "[";
-    while(!pq.empty()){ T e=pq.top(); pq.pop(); os << e << (!pq.empty()?", ":""); }
-    os << "]";
-    return os;
-}
-// std::deque
-template<typename T> std::ostream &operator<< (std::ostream &os, const std::deque<T> &dq){
-    os << "[";
-    for(auto iter=dq.begin();iter!=dq.end();) os << *iter << (++iter!=dq.end()?", ":"");
-    os << "]";
-    return os;
-}
-// std::array
-template<typename T, size_t N> std::ostream &operator<< (std::ostream &os, const std::array<T,N> &arr){
-    os << "[";
-    for(size_t i=0;i<N;i++) os << arr[i] << (i+1!=N?", ":"");
-    os << "]";
-    return os;
-}
-// std::set
-template<typename T> std::ostream &operator<< (std::ostream &os, const std::set<T> &st){
-    os << "{";
-    for(auto iter=st.begin();iter!=st.end();) os << *iter << (++iter!=st.end()?", ":"");
-    os << "}";
-    return os;
-}
-// std::map
-template<typename T1, typename T2> std::ostream &operator<< (std::ostream &os, const std::map<T1,T2> &mp){
-    os << "{";
-    for(auto iter=mp.begin();iter!=mp.end();) os << iter->first << ":" << iter->second << (++iter!=mp.end()?", ":"");
-    os << "}";
-    return os;
-}
-// std::unordered_set
-template<typename T> std::ostream &operator<< (std::ostream &os, const std::unordered_set<T> &st){
-    os << "{";
-    for(auto iter=st.begin();iter!=st.end();) os << *iter << (++iter!=st.end()?", ":"");
-    os << "}";
-    return os;
-}
-// std::multiset
-template<typename T> std::ostream &operator<< (std::ostream &os, const std::multiset<T> &st){
-    os << "{";
-    for(auto iter=st.begin();iter!=st.end();) os << *iter << (++iter!=st.end()?", ":"");
-    os << "}";
-    return os;
+std::string i128_to_str(const __int128_t &target){
+    std::string res_str;
+    __uint128_t target_tmp = target<0 ? -target : target;
+    do{
+        res_str+=target_tmp%10+'0';
+        target_tmp/=10;
+    }while(target_tmp!=0);
+    if(target<0) res_str+='-';
+    std::reverse(std::begin(res_str),std::end(res_str));
+    return res_str;
 }
 
-template<typename T1,typename T2> inline bool chmin(T1 &a,T2 b){return a>b?a=b,true:false;}
-template<typename T1,typename T2> inline bool chmax(T1 &a,T2 b){return a<b?a=b,true:false;}
+// is_pair
+template<typename T> constexpr bool is_pair_v = false;
+template<typename T, typename U> constexpr bool is_pair_v<std::pair<T,U>> = true;
+
+// istreamable
+#if __cplusplus >= 202002L
+template<typename T> concept istreamable_v = requires(T a){ std::cin>>a; };
+#else // earlier C++20
+template<typename T, typename=void> constexpr bool istreamable_v = false;
+template<typename T> constexpr bool istreamable_v<T, std::void_t<decltype(std::cin>>std::declval<T&>())>> = true;
+#endif
+
+// ostreamable
+#if __cplusplus >= 202002L
+template<typename T> concept ostreamable_v = requires(T a){ std::cout<<a; };
+#else // earlier C++20
+template<typename T, typename=void> constexpr bool ostreamable_v = false;
+template<typename T> constexpr bool ostreamable_v<T, std::void_t<decltype(std::cout<<std::declval<T&>())>> = true;
+#endif
+
+// iterable
+#if __cplusplus >= 202002L
+#   if __has_include(<ranges>)
+template<typename T> concept iterable_v = std::ranges::range<T>;
+#   else // C++20, not has <ranges>
+template<typename T> concept iterable_v = requires(T a){ std::begin(a); std::end(a); };
+#   endif
+#else // earlier C++20
+template<typename T> constexpr bool iterable_v = std::is_same_v<decltype(std::begin(std::declval<T>())), decltype(std::end(std::declval<T>()))>;
+#endif
+
+// concepts for debug use only:
+#if __cplusplus >= 202002L
+// stack_like_v (std::stack, std::priority_queue)
+template<typename T> concept stack_like_v = requires(T t){
+    requires(
+        std::same_as<decltype(t.top()), typename T::reference> ||
+        std::same_as<decltype(t.top()), typename T::const_reference>
+    );
+    { t.pop() };
+    { t.empty() } -> std::same_as<bool>;
+};
+
+// queue_like_v (std::queue)
+template<typename T> concept queue_like_v = requires(T t){
+    { t.front() } -> std::same_as<typename T::reference&>;
+    { t.pop() };
+    { t.empty() } -> std::same_as<bool>;
+};
+#endif
+
+void input(){ return; }
+template<typename T, typename... Rest>
+void input(T &target, Rest&... rest){
+    if constexpr(istreamable_v<T>) cin>>target;
+    else if constexpr(iterable_v<T>) for(auto &e:target) input(e);
+    else if constexpr(is_pair_v<T>){
+        input(target.first);
+        input(target.second);
+    }else if constexpr(std::is_convertible_v<long long, T>){
+        long long val;
+        input(val);
+        target=val;
+    }else{
+        cerr<<"Invalid Input: Unreadable variable detected"<<std::endl;
+        assert(false);
+    }
+    input(rest...);
+}
+
+// output for debugging
+template<typename T>
+void write_value(const T &target){
+    using V = std::decay_t<T>;
+    if constexpr(ostreamable_v<V>){
+        std::cout<<target;
+    }else if constexpr(is_pair_v<V>){
+        std::cout<<'{';
+        write_value(target.first);
+        std::cout<<',';
+        write_value(target.second);
+        std::cout<<'}';
+    }else if constexpr(iterable_v<V>){
+        std::cout<<'[';
+        bool first=true;
+        for(const auto &e:target){
+            if(!first) std::cout<<", ";
+            write_value(e);
+            first=false;
+        }
+        std::cout<<']';
+    }else if constexpr(std::is_convertible<V, __int128_t>::value){
+        write_value(i128_to_str(target));
+    }else if constexpr(std::is_convertible_v<V, long long>){
+        write_value(static_cast<long long>(target));
+    }else if constexpr(stack_like_v<V>){
+        auto tmp=target;
+        std::cout<<'[';
+        bool first=true;
+        while(!tmp.empty()){
+            if(!first) std::cout<<", ";
+            write_value(tmp.top());
+            tmp.pop();
+            first=false;
+        }
+        std::cout<<']';
+    }else if constexpr(queue_like_v<V>){
+        auto tmp=target;
+        std::cout<<'[';
+        bool first=true;
+        while(!tmp.empty()){
+            if(!first) std::cout<<", ";
+            write_value(tmp.front());
+            tmp.pop();
+            first=false;
+        }
+        std::cout<<']';
+    }
+    else{
+        std::cerr<<"Invalid Output: Unwritable variable detected"<<std::endl;
+        assert(false);
+    }
+}
+
+void output(){ std::cout<<'\n'; }
+template<typename T, typename... Rest>
+void output(const T &target, const Rest&... rest){
+    write_value(target);
+    if constexpr(sizeof...(rest)>0){
+        std::cout<<' ';
+        output(rest...);
+    }else{
+        std::cout<<'\n';
+    }
+}
+
+template<typename T1,typename T2> bool chmin(T1 &a,T2 b){return a>b?a=b,true:false;}
+template<typename T1,typename T2> bool chmax(T1 &a,T2 b){return a<b?a=b,true:false;}
 
 // a^bを返す オーバーフローに注意
-inline ll Pow(ll a,ll b){
+ll Pow(ll a,ll b){
     assert(b>=0);
     if(a==0 and b==0) return 1;
     if(a==1) return 1;
@@ -129,12 +193,12 @@ inline ll Pow(ll a,ll b){
 }
 
 // Pythonのenumerateみたいなやつ　[index,value]を範囲for文に提供
-template<typename T> inline vector<pair<int,T>> enumerate(const vector<T> &v){
+template<typename T> vector<pair<int,T>> enumerate(const vector<T> &v){
     vector<pair<int,T>> res(ssize(v));
     for(int i=0;i<ssize(v);i++) res[i]={i,v[i]};
     return res;
 }
-inline vector<pair<int,char>> enumerate(const string &s){
+vector<pair<int,char>> enumerate(const string &s){
     vector<pair<int,char>> res(ssize(s));
     for(int i=0;i<ssize(s);i++) res[i]={i,s[i]};
     return res;
@@ -167,8 +231,6 @@ vector<size_t> multipleSort(Compare comp = Compare(), Vectors&... vectors) {
 }
 
 #pragma endregion templates
-
-
 
 int main(){
     
