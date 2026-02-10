@@ -14,8 +14,31 @@ template<typename T> using minpq=priority_queue<T,vector<T>,greater<T>>;
 #define Yes cout << "Yes" << el
 #define No cout << "No" << el
 
+// 二分探索による、浮動小数点型を介さないsqrt
+// 制約：0 <= x <= LLONG_MAX
+ll ll_sqrt(ll x){
+    assert(0 <= x);
+    ll ok = 0, ng = x/2+2;
+    while(abs(ok-ng) > 1){
+        ll mid = (ok+ng)/2;
+        if(x/mid < mid) ng = mid;
+        else ok = mid;
+    }
+    return ok;
+}
 
-ull h,w;
+// 浮動小数点型を介さず、aを底とした対数関数 log_a(x)以上の最小の整数を返す
+// 制約: 0 < x <= LLONG_MAX, 1 < a <= LLONG_MAX
+ll ll_log(ll x, ll a = 2){
+    assert(x > 0 && a > 1);
+    ll res = 0;
+    while(x > 1){
+        x = (x+a-1)/a;
+        res++;
+    }
+    return res;
+}
+
 // 場外判定
     auto outof = [&](ull y, ull x){
         return (y >= h || x >= w);
@@ -39,19 +62,6 @@ ull h,w;
         return y*w+x;
     };
 
-// 二分探索による、浮動小数点型を介さないsqrt
-// 制約：0 <= x <= LLONG_MAX
-ll ll_sqrt(ll x){
-    assert(0 <= x);
-    ll ok = 0, ng = x/2+2;
-    while(abs(ok-ng) > 1){
-        ll mid = (ok+ng)/2;
-        if(x/mid < mid) ng = mid;
-        else ok = mid;
-    }
-    return ok;
-}
-
 // 座標圧縮
 template<typename T> inline vector<uint> compression(vector<T> &a){
     int n = a.size();
@@ -62,18 +72,6 @@ template<typename T> inline vector<uint> compression(vector<T> &a){
     rep(i,0,n){
         auto iter = lower_bound(all(b),a[i]);
         res[i] = iter - b.begin();
-    }
-    return res;
-}
-
-// 浮動小数点型を介さず、aを底とした対数関数 log_a(x)以上の最小の整数を返す
-// 制約: 0 < x <= LLONG_MAX, 1 < a <= LLONG_MAX
-ll ll_log(ll x, ll a = 2){
-    assert(x > 0 && a > 1);
-    ll res = 0;
-    while(x > 1){
-        x = (x+a-1)/a;
-        res++;
     }
     return res;
 }
