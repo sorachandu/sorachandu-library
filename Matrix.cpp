@@ -1,97 +1,143 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-// 行列ライブラリ　四則演算(除法は含まない)を愚直に計算するくらい
-template<typename T> struct Matrix{
-    private:
-        const int _n,_m;
-        vector<vector<T>> _data;
-    
-    public:
-        Matrix(int n, int m, T e) : Matrix(vector<vector<T>>(n,vector<T>(m,e))) {}
-        explicit Matrix(const vector<vector<T>>& mat) : _data(mat), _n((int)mat.size()), _m((int)mat[0].size()) {}
 
-        template<typename S> inline bool isSameSize(const Matrix<S>& rhs) const {
-            return (_n == rhs._n && _m == rhs._m);
-        }
+/*//--------------------------------------------------------
+ei1333さんのライブラリをそのまま拝借
+refer: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
 
-        Matrix<T> operator-() const{
-            vector data = _data;
-            for(auto &v : data){
-                for(auto &x : v) x = -x;
-            }            
-            return Matrix(data);
-        }
+和, 差:  O(N^2)
+積:      O(N^3)
+行列累乗: O(N^3 logk)
+行列式(determinant): O(N^3)
+*///--------------------------------------------------------
 
-        Matrix<T> operator+(const Matrix<T>& rhs) const {
-            assert(isSameSize(rhs));
-            vector data = _data;
-            for(int i = 0; i < _n; i++){
-                for(int j = 0; j < _m; j++){
-                    data[i][j] += rhs._data[i][j];
-                }
-            }
-            return Matrix(data);
-        }
+template<class T>
+struct Matrix {
+    vector<vector<T>> A;
 
-        Matrix<T> operator-(const Matrix<T>& rhs) const {
-            assert(isSameSize(rhs));
-            vector data = _data;
-            for(int i = 0; i < _n; i++){
-                for(int j = 0; j < _m; j++){
-                    data[i][j] -= rhs._data[i][j];
-                }
-            }
-            return Matrix(data);
-        }
+    Matrix() {}
 
-        Matrix<T> operator*(const T& rhs) const {
-            vector data = _data;
-            for(auto &v : data){
-                for(auto &x : v) x *= rhs;
-            }
-            return Matrix(data);
-        }
+    Matrix(size_t n, size_t m) : A(n, vector<T>(m, 0)) {}
 
-        Matrix<T> operator*(const Matrix<T>& rhs) const {
-            assert(_m == rhs._n);
-            vector<vector<T>> data(_n,vector<T>(rhs._m));
-            for(int i = 0; i < _n; i++){
-                for(int j = 0; j < rhs._m; j++){
-                    T res = 0;
-                    for(int k = 0; k < _m; k++){
-                        res += _data[i][k]*rhs._data[k][j];
-                    }
-                    data[i][j] = res;
-                }
-            }
-            return Matrix(data);
-        }
+    Matrix(size_t n) : A(n, vector<T>(n, 0)) {};
 
-        /*Matrix<T> operator^(const int n) const {
-            Matrix Mat(_data);
-            Matrix rhs(_data);
-            for(int i = 1; i < n; i++){
-                Mat = Matrix(Mat * rhs);
-            }
-            return Mat;
-        }*/
-
-        void Print(){
-            for(auto &v : _data){
-                for(auto x = v.begin(); x < v.end(); x++){
-                    cout << *x << " \n"[x+1==v.end()];
-                }
-            }
-        }
-};
-template<typename T> inline Matrix<T> IdentityMatrix(int n){
-    vector<vector<T>> data(n,vector<T>(n,0));
-    for(int i = 0; i < n; i++){
-        data[i][i] = 1;
+    size_t height() const {
+        return (A.size());
     }
-    return Matrix(data);
-}
 
-int main(){
-    
-}
+    size_t width() const {
+        return (A[0].size());
+    }
+
+    inline const vector<T> &operator[](int k) const {
+        return (A.at(k));
+    }
+
+    inline vector<T> &operator[](int k) {
+        return (A.at(k));
+    }
+
+    static Matrix I(size_t n) {
+        Matrix mat(n);
+        for(int i = 0; i < n; i++) mat[i][i] = 1;
+        return (mat);
+    }
+
+    Matrix &operator+=(const Matrix &B) {
+        size_t n = height(), m = width();
+        assert(n == B.height() && m == B.width());
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+               (*this)[i][j] += B[i][j];
+        return (*this);
+    }
+
+    Matrix &operator-=(const Matrix &B) {
+        size_t n = height(), m = width();
+        assert(n == B.height() && m == B.width());
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                (*this)[i][j] -= B[i][j];
+        return (*this);
+    }
+
+    Matrix &operator*=(const Matrix &B) {
+        size_t n = height(), m = B.width(), p = width();
+        assert(p == B.height());
+        vector<vector<T>> C(n, vector<T>(m, 0));
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+            for(int k = 0; k < p; k++)
+                C[i][j] = (C[i][j] + (*this)[i][k] * B[k][j]);
+        A.swap(C);
+        return (*this);
+    }
+
+    Matrix &operator^=(long long k) {
+        Matrix B = Matrix::I(height());
+        while(k > 0) {
+            if(k & 1) B *= *this;
+            *this *= *this;
+            k >>= 1LL;
+        }
+        A.swap(B.A);
+        return (*this);
+    }
+
+    Matrix operator+(const Matrix &B) const {
+        return (Matrix(*this) += B);
+    }
+
+    Matrix operator-(const Matrix &B) const {
+        return (Matrix(*this) -= B);
+    }
+
+    Matrix operator*(const Matrix &B) const {
+        return (Matrix(*this) *= B);
+    }
+
+    Matrix operator^(const long long k) const {
+        return (Matrix(*this) ^= k);
+    }
+
+    friend ostream &operator<<(ostream &os, Matrix &p) {
+        size_t n = p.height(), m = p.width();
+        for(int i = 0; i < n; i++) {
+            os << "[";
+            for(int j = 0; j < m; j++) {
+                os << p[i][j] << (j + 1 == m ? "]\n" : ",");
+            }
+        }
+        return (os);
+    }
+
+
+    T determinant() {
+        Matrix B(*this);
+        assert(width() == height());
+        T ret = 1;
+        for(int i = 0; i < width(); i++) {
+            int idx = -1;
+            for(int j = i; j < width(); j++) {
+                if(B[j][i] != 0) idx = j;
+            }
+            if(idx == -1) return (0);
+            if(i != idx) {
+                ret *= -1;
+                swap(B[i], B[idx]);
+            }
+            ret *= B[i][i];
+            T vv = B[i][i];
+            for(int j = 0; j < width(); j++) {
+                B[i][j] /= vv;
+            }
+            for(int j = i + 1; j < width(); j++) {
+                T a = B[j][i];
+                for(int k = 0; k < width(); k++) {
+                    B[j][k] -= B[i][k] * a;
+                }
+            }
+        }
+        return (ret);
+    }
+};
