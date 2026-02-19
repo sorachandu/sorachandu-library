@@ -192,6 +192,31 @@ ll Pow(ll a,ll b){
     return res;
 }
 
+// 二分探索による、浮動小数点型を介さないsqrt
+// 制約：0 <= x <= LLONG_MAX
+ll ll_sqrt(ll x){
+    assert(0 <= x);
+    ll ok = 0, ng = x/2+2;
+    while(abs(ok-ng) > 1){
+        ll mid = (ok+ng)/2;
+        if(x/mid < mid) ng = mid;
+        else ok = mid;
+    }
+    return ok;
+}
+
+// 浮動小数点型を介さず、aを底とした対数関数 log_a(x)以上の最小の整数を返す
+// 制約: 0 < x <= LLONG_MAX, 1 < a <= LLONG_MAX
+ll ll_log(ll x, ll a = 2){
+    assert(x > 0 && a > 1);
+    ll res = 0;
+    while(x > 1){
+        x = (x+a-1)/a;
+        res++;
+    }
+    return res;
+}
+
 // Pythonのenumerateみたいなやつ　[index,value]を範囲for文に提供
 template<typename T> vector<pair<int,T>> enumerate(const vector<T> &v){
     vector<pair<int,T>> res(ssize(v));
