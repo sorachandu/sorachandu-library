@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 /*//--------------------------------------------------------
 ei1333さんのライブラリをそのまま拝借
 refer: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
@@ -14,18 +11,20 @@ refer: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
 template<class T>
 struct Matrix {
     vector<vector<T>> A;
+    static const T UNIT=1;
 
     Matrix() {}
 
-    Matrix(size_t n, size_t m) : A(n, vector<T>(m, 0)) {}
+    // (height,width)
+    Matrix(int n, int m) : A(n, vector<T>(m, 0)) {}
 
-    Matrix(size_t n) : A(n, vector<T>(n, 0)) {};
+    Matrix(int n) : A(n, vector<T>(n, 0)) {};
 
-    size_t height() const {
+    int height() const {
         return (A.size());
     }
 
-    size_t width() const {
+    int width() const {
         return (A[0].size());
     }
 
@@ -37,14 +36,14 @@ struct Matrix {
         return (A.at(k));
     }
 
-    static Matrix I(size_t n) {
+    static Matrix I(int n) {
         Matrix mat(n);
-        for(int i = 0; i < n; i++) mat[i][i] = 1;
+        for(int i = 0; i < n; i++) mat[i][i] = UNIT;
         return (mat);
     }
 
     Matrix &operator+=(const Matrix &B) {
-        size_t n = height(), m = width();
+        int n = height(), m = width();
         assert(n == B.height() && m == B.width());
         for(int i = 0; i < n; i++)
             for(int j = 0; j < m; j++)
@@ -53,7 +52,7 @@ struct Matrix {
     }
 
     Matrix &operator-=(const Matrix &B) {
-        size_t n = height(), m = width();
+        int n = height(), m = width();
         assert(n == B.height() && m == B.width());
         for(int i = 0; i < n; i++)
             for(int j = 0; j < m; j++)
@@ -62,13 +61,13 @@ struct Matrix {
     }
 
     Matrix &operator*=(const Matrix &B) {
-        size_t n = height(), m = B.width(), p = width();
+        int n = height(), m = B.width(), p = width();
         assert(p == B.height());
         vector<vector<T>> C(n, vector<T>(m, 0));
         for(int i = 0; i < n; i++)
             for(int j = 0; j < m; j++)
             for(int k = 0; k < p; k++)
-                C[i][j] = (C[i][j] + (*this)[i][k] * B[k][j]);
+                C[i][j] = (C[i][j] + ((*this)[i][k] * B[k][j]));
         A.swap(C);
         return (*this);
     }
@@ -101,7 +100,18 @@ struct Matrix {
     }
 
     friend ostream &operator<<(ostream &os, Matrix &p) {
-        size_t n = p.height(), m = p.width();
+        int n = p.height(), m = p.width();
+        for(int i = 0; i < n; i++) {
+            os << "[";
+            for(int j = 0; j < m; j++) {
+                os << p[i][j] << (j + 1 == m ? "]\n" : ",");
+            }
+        }
+        return (os);
+    }
+
+    friend ostream &operator<<(ostream &os, Matrix &&p) {
+        int n = p.height(), m = p.width();
         for(int i = 0; i < n; i++) {
             os << "[";
             for(int j = 0; j < m; j++) {
