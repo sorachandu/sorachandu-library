@@ -9,6 +9,7 @@ template<typename T> class Doubling{
     vector<vector<T>> dp;
     
     public:
+        Doubling() : K(0), n(0), N(0) {}
         Doubling(vector<T> v, ull k = 1ull<<60) :
             K(k), n(uint(v.size())), N(bit_width(K)){
                 dp.resize(N);
