@@ -17,7 +17,7 @@ public:
 
     // Union-Find木における根を返す
     int par_root(int v) {
-        return (~par[v] ? par[v] = root(par[v]) : v);
+        return (~par[v] ? par[v] = par_root(par[v]) : v);
     }
 
     // 論理的な代表元を返す
