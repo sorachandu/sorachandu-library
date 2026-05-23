@@ -2,11 +2,10 @@ template<typename T> struct is_static_modint : false_type {};
 template<int M, enable_if_t<(1<=M)>* Ptr>
   struct is_static_modint<atcoder::static_modint<M,Ptr>> : true_type {};
 template<typename T> concept static_modint = is_static_modint<T>::value;
-
 /***
   nCkを任意の素数mod下で高速に計算する構造体
   atcoder::static_modint<M>をテンプレート引数に取る
-  Tips: Combination<atcoder::modint998244353> comb(n)
+  e.g. Combination<atcoder::modint998244353> comb(n)
 ***/
 template<static_modint mint> struct Combination{
     vector<mint> fac,finv,inv;
@@ -24,9 +23,14 @@ template<static_modint mint> struct Combination{
     }
 
     // return nCk : O(1)
-    uint64_t calc(int n, int k){
-        if(n<k) return 0;
-        if(n<0 or k<0) return 0;
-        return (fac[n]*finv[k]*finv[n-k]).val();
+    mint comb(int n, int k){
+        if(n<k or n<0 or k<0) return 0;
+        return fac[n]*finv[k]*finv[n-k];
+    }
+
+    // return nPk : O(1)
+    mint perm(int n, int k){
+        if(n<k or n<0 or k<0) return 0;
+        return fac[n]*finv[n-k];
     }
 };
