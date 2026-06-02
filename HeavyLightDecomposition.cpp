@@ -52,6 +52,7 @@ public:
                     dfs(dfs,w,v);
                 }
             };
+            head[root]=root;
             dfs(dfs,root);
         }
     }
