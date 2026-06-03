@@ -58,11 +58,11 @@ public:
     }
 
     int numVertices() const { return N; }
-    // 頂点vの深さ
+    // 頂点vの深さ (dep)
     int depth(int v) const { return dep[v]; }
-    // 頂点vがHLD配列上で何番目か
+    // 頂点vがHLD配列上で何番目か (id)
     int toSeq(int v) const { return id[v]; }
-    // HLD配列[seqidx]の頂点番号
+    // HLD配列[seqidx]の頂点番号 (vertex)
     int toVertex(int seqidx) const { return vertex[seqidx]; }
     // 頂点vの親 (根なら-1)
     int parent(int v) const { return par[v]; }
@@ -78,6 +78,8 @@ public:
 
     // 頂点uと頂点vが同一のheavyPathに乗っているか
     bool same(int u,int v) const { return head[u]==head[v]; }
+    // 頂点uと頂点vについてHLD配列上でu<vを成立させる (外部クエリ処理用)
+    void normalizePair(int &u,int &v){ if(id[u]>id[v]) swap(u,v); }
     // 頂点vがheavyPath上で何番目の頂点か
     int distToHR(int v) const { return id[v]-id[head[v]]; }
     // 頂点vが含まれるheavyPathを配列で返す stopV=trueでvで止まる
@@ -104,7 +106,7 @@ public:
     // Lowest Common Ancestor　頂点u,vの最近共通祖先なる頂点番号を返す
     // O(logN)
     int LCA(int u,int v) const {
-        while(head[u]!=head[v]){
+        while(!same(u,v)){
             if(id[u]>id[v]) std::swap(u,v);
             v=par[head[v]];
         }
