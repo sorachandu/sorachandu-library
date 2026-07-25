@@ -11,7 +11,7 @@ refer: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
 template<class T>
 struct Matrix {
     vector<vector<T>> A;
-    static const T UNIT=1;
+    inline static const T UNIT=1;
 
     Matrix() {}
 
@@ -19,6 +19,8 @@ struct Matrix {
     Matrix(int n, int m) : A(n, vector<T>(m, 0)) {}
 
     Matrix(int n) : A(n, vector<T>(n, 0)) {};
+
+    Matrix(vector<vector<T>> &v) : A(v) {};
 
     int height() const {
         return (A.size());
