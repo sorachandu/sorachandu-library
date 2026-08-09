@@ -7,9 +7,10 @@ template<typename T> concept static_modint = is_static_modint<T>::value;
   atcoder::static_modint<M>をテンプレート引数に取る
   e.g. Combination<atcoder::modint998244353> comb(n)
 ***/
-template<static_modint mint> struct Combination{
+template<static_modint mint> class Combination{
     vector<mint> fac,finv,inv;
     
+public:
     Combination(int n) : fac(n+1), finv(n+1), inv(n+1) {
         constexpr int MOD = mint::mod();
         fac[0]=fac[1]=1;
@@ -23,14 +24,20 @@ template<static_modint mint> struct Combination{
     }
 
     // return nCk : O(1)
-    mint comb(int n, int k){
+    mint comb(int n, int k) const {
         if(n<k or n<0 or k<0) return 0;
         return fac[n]*finv[k]*finv[n-k];
     }
 
     // return nPk : O(1)
-    mint perm(int n, int k){
+    mint perm(int n, int k) const {
         if(n<k or n<0 or k<0) return 0;
         return fac[n]*finv[n-k];
+    }
+
+    // return n!  : O(1)
+    mint fact(int n) const {
+        if(n<0) return 0;
+        return fac[n];
     }
 };
