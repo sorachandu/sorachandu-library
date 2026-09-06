@@ -4,17 +4,17 @@
   lca(u,v): u と v の LCA を求める。計算量 O(logn)
   前処理: 時間O(nlogn), 空間O(nlogn)
 ***/
-class LCA{
+class LowestCommonAncestor{
     int n,logn;
     vector<int> depth,parent_edge_id;
     vector<vector<pair<int,int>>> edges;
     vector<vector<int>> ancestor;
 
     public:
-        LCA(int _n) : n(_n), logn(bit_width(uint(n))), depth(n,0),
+        LowestCommonAncestor(int _n) : n(_n), logn(bit_width((unsigned int)n)), depth(n,0),
             parent_edge_id(n,-1), edges(n), ancestor(logn,vector<int>(n,-1)) {}
         
-        LCA(vector<vector<int>> &G, int root=0) : LCA(ssize(G)) {
+        LowestCommonAncestor(vector<vector<int>> &G, int root=0) : LowestCommonAncestor(ssize(G)) {
             int edge_id=0;
             for(int u=0;u<n;u++){
                 for(int v:G[u]){
@@ -25,7 +25,7 @@ class LCA{
         }
         
         // (u,v) 間に edge_id 番目の辺を張る
-        inline void add_edge(int u,int v,int edge_id){
+        void add_edge(int u,int v,int edge_id){
             assert(0<=u and u<n);
             assert(0<=v and v<n);
             assert(0<=edge_id and edge_id<n-1);
@@ -34,7 +34,7 @@ class LCA{
         }
 
         // 根 root の頂点番号を渡して、構築 (by doubling)
-        inline void build(int root=0){
+        void build(int root=0){
             assert(0<=root and root<n);
             stack<int> st;
             st.push(root);
@@ -63,25 +63,25 @@ class LCA{
         }
 
         // 頂点vと、その親とを接続する辺の番号を返す
-        inline int get_parent_edge_id(int v){
+        int get_parent_edge_id(int v) const {
             assert(0<=v and v<n);
             return parent_edge_id[v];
         }
 
         // 頂点vの親(1つ上の祖先)を返す
-        inline int get_parent(int v){
+        int get_parent(int v) const {
             assert(0<=v and v<n);
             return ancestor[0][v];
         }
 
         // 頂点vの深さを返す
-        inline int get_depth(int v){
+        int get_depth(int v) const {
             assert(0<=v and v<n);
             return depth[v];
         }
 
         // 頂点u,vのLCAを求めて返す O(logN)
-        inline int lca(int u,int v){
+        int lca(int u,int v) const {
             assert(0<=u and u<n);
             assert(0<=v and v<n);
             // vのほうがuより深いように正規化
@@ -104,18 +104,30 @@ class LCA{
         }
 
         // (u,v) 間の距離を返す O(logN)
-        inline int get_distance(int u,int v){
+        int get_distance(int u,int v) const {
             assert(0<=u and u<n);
             assert(0<=v and v<n);
             return depth[u]+depth[v] - 2*depth[lca(u,v)];
         }
 
         // (u,v) 間のパスに頂点pが含まれるか
-        inline int is_on_path(int u,int v,int p){
+        int is_on_path(int u,int v,int p) const {
             assert(0<=u and u<n);
             assert(0<=v and v<n);
             assert(0<=p and p<n);
             return get_distance(u,p)+get_distance(p,v) == get_distance(u,v);
+        }
+
+        // 頂点wから (u,v) 間のパスに含まれる頂点(端点含む) のうち最も近い頂点を返す
+        // 辺の重みについての最短が欲しい場合もこれでok
+        int closest_on_path(int u,int v,int w) const {
+            const int a=lca(u,v);
+            const int b=lca(u,w);
+            const int c=lca(v,w);
+            int x=a;
+            if(depth[b]>depth[x]) x=b;
+            if(depth[c]>depth[x]) x=c;
+            return x;
         }
 
         // 実装してないけど、(u,v) 間パスに含まれる辺の最大(最小)コストとかもlogNで求められる
