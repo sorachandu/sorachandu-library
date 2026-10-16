@@ -1,2 +1,4 @@
 # sorachandu-library
-library repository for competitive programming, by sorachandu
+
+sorachanduの競プロ用C++ライブラリです。
+整備に生成AIを利用しているのでご了承ください。

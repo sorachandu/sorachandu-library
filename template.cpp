@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #pragma region templates
+// ライブラリ出典: https://github.com/sorachandu/sorachandu-library
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); cout << setprecision(13); } }init;
 
 using ll  = long long;
@@ -192,17 +193,13 @@ ll Pow(ll a,ll b){
     return res;
 }
 
-// 二分探索による、浮動小数点型を介さないsqrt
-// 制約：0 <= x <= LLONG_MAX
+// floor(sqrt(x)) を返す
 ll ll_sqrt(ll x){
-    assert(0 <= x);
-    ll ok = 0, ng = x/2+2;
-    while(abs(ok-ng) > 1){
-        ll mid = (ok+ng)/2;
-        if(x/mid < mid) ng = mid;
-        else ok = mid;
-    }
-    return ok;
+    if(x<=0) return 0;
+    ll a=sqrt(x);
+    while((a+1)*(a+1)<=x) a++;
+    while(a*a>x) a--;
+    return a;
 }
 
 // 浮動小数点型を介さず、aを底とした対数関数 log_a(x)以上の最小の整数を返す
@@ -229,29 +226,27 @@ vector<pair<int,char>> enumerate(const string &s){
     return res;
 }
 
-// This function sorts multiple vectors based on the first vector
-// and returns the indices of the sorted order.
-// Note: First argument is a comparison function.
-template <typename Compare, typename... Vectors>
-vector<size_t> multipleSort(Compare comp = Compare(), Vectors&... vectors) {
-    const size_t size = std::get<0>(std::tie(vectors...)).size();
-    ((void)std::initializer_list<int>{(vectors.size() == size ? 0 : 
-        throw std::invalid_argument("Vectors must have the same size"))...});
-
-    std::vector<size_t> indices(size);
-    std::iota(indices.begin(), indices.end(), 0);
-
-    std::sort(indices.begin(), indices.end(), [&](size_t i, size_t j) {
-        return comp(std::get<0>(std::tie(vectors...))[i], std::get<0>(std::tie(vectors...))[j]);
+// 先頭配列をcompで比較して、全配列を同じ順序に並べ替える。入力配列を変更する。
+// 戻り値のindices[i]は、並べ替え後のi番目に対応する元の添字。
+// 同じキーの順序は未規定。配列の長さは同じで、配列同士は別オブジェクトであること。
+// K個の長さNの配列について、比較・コピーをO(1)として時間O(K + N log(N+1) + KN)、追加空間O(N)。
+template <typename Compare, typename First, typename... Rest>
+std::vector<std::size_t> multiple_sort(Compare comp, First& first, Rest&... rest) {
+    const std::size_t n = first.size();
+    if (!((rest.size() == n) && ...)) {
+        throw std::invalid_argument("Vectors must have the same size");
+    }
+    std::vector<std::size_t> indices(n);
+    std::iota(indices.begin(), indices.end(), std::size_t{0});
+    std::sort(indices.begin(), indices.end(), [&](std::size_t i, std::size_t j) {
+        return comp(first[i], first[j]);
     });
-
-    auto reorder = [&](auto& vec) {
-        auto temp=vec;
-        for (size_t i = 0; i < size; ++i) {
-            vec[i] = temp[indices[i]];
-        }
+    auto reorder = [&](auto& values) {
+        const auto original = values;
+        for (std::size_t i = 0; i < n; ++i) values[i] = original[indices[i]];
     };
-    (reorder(vectors), ...);
+    reorder(first);
+    (reorder(rest), ...);
     return indices;
 }
 

@@ -1,0 +1,148 @@
+{
+	"note": {
+		"prefix": "note",
+		"body": [
+			"/*//------------------",
+			"",
+			"*///------------------"
+		],
+		"description": ""
+    },
+	"include pbds": {
+        "prefix": "include pbds",
+        "body": [
+            "#include <ext/pb_ds/assoc_container.hpp>",
+            "#include <ext/pb_ds/tree_policy.hpp>",
+            "using namespace __gnu_pbds;",
+			"template<typename Key>                using ordered_set=tree<Key,null_type,less<Key>,rb_tree_tag,tree_order_statistics_node_update>;",
+			"template<typename Key,typename Value> using ordered_map=tree<Key,Value,less<Key>,rb_tree_tag,tree_order_statistics_node_update>;",
+			"/*//--------------------",
+			"S.order_of_key(x)  := key=x は前から何番目か?を返す        lower_bound-s.begin()",
+			"S.find_by_order(k) := 前から k 番目の要素のイテレータを返す ランダムアクセス",
+			"Refer: https://xuzijian629.hatenablog.com/entry/2018/12/01/000010",
+			"*///--------------------"
+        ],
+        "description": ""
+    },
+	"include modint": {
+		"prefix": "include modint",
+		"body": [
+			"#include <atcoder/modint>",
+			"using mint=atcoder::modint$0",
+			"std::ostream &operator<< (std::ostream &os, mint m){",
+			"    os<<m.val();",
+			"    return os;",
+			"}"
+		],
+		"description": ""
+	},
+	"grid_dydx4": {
+		"prefix": "dydx4",
+		"body": [
+			"// 場外判定",
+    		"auto outof = [&](unsigned long long y, unsigned long long x){",
+        		"return (y >= H || x >= W);",
+    		"};",
+    		"// 4方向の近傍 右,下,左,上",
+    		"const int dy[4] = {0, 1, 0, -1};",
+    		"const int dx[4] = {1, 0, -1, 0};"
+		],
+		"description": ""
+	},
+	"gird_dydx8": {
+		"prefix": "dydx8",
+		"body": [
+			"// 場外判定",
+    		"auto outof = [&](unsigned long long y, unsigned long long x){",
+        		"return (y >= H || x >= W);",
+    		"};",
+    		"// 8方向の近傍 右,右下,下,左下,左,左上,上,右上",
+    		"const int dy[8] = {0, 1, 1, 1, 0, -1, -1, -1};",
+    		"const int dx[8] = {1, 1, 0, -1, -1, -1, 0, 1};"
+		],
+		"description": ""
+	},
+	"1D_convert_2D": {
+		"prefix": "1Dto2D",
+		"body": [
+			"auto convert_1Dto2D = [&](unsigned long long idx){",
+				"unsigned long long y = idx/W;",
+				"unsigned long long x = idx%W;",
+				"return make_pair(y,x);",
+			"};"
+		],
+		"description": ""
+	},
+	"2D_convert_1D": {
+		"prefix": "2Dto1D",
+		"body": [
+			"auto convert_2Dto1D = [&](unsigned long long y, unsigned long long x){",
+				"return y*W+x;",
+			"};"
+		]
+	},
+	"trimming_vector": {
+		"prefix": "trimming_vec",
+		"body": [
+			"// 引数を直接いじるんじゃなくて、あくまでも操作後の配列を返り値として返すことに注意.",
+			"// {'.','#'} からなるようなvector<string>に対し,'#'を含まない(余分な)長方形領域を切り出したものを返す",
+			"// 制約: 引数は空配列でないこと O(H*W)",
+			"vector<string> trimming(const vector<string>& s){",
+				"int a = inf, b = inf, c = 0, d = 0;",
+				"int n = s.size();",
+				"int m = s[0].size();",
+				"rep(i,0,n){",
+					"rep(j,0,m){",
+						"if(s[i][j] == '#'){",
+							"chmin(a,i);",
+							"chmin(b,j);",
+							"chmax(c,i);",
+							"chmax(d,j);",
+						"}",
+					"}",
+				"}",
+				"vector<string> t;",
+				"if(a == inf) t.resize(0);",
+				"else{",
+					"REP(i,a,c){",
+						"string str;",
+						"REP(j,b,d) str.push_back(s[i][j]);",
+						"t.emplace_back(str);",
+					"}",
+				"}",
+				"return t;",
+			"}"
+		]
+	},
+	"rotate_vector": {
+		"prefix": "rotate_vec",
+		"body":[
+			"// 引数を直接いじるんじゃなくて、あくまでも操作後の配列を返り値として返すことに注意.",
+			"// 二次元配列<string>を反時計回りに90度だけ回転させたものを返す",
+			"// 制約: 引数は空配列でないこと ジャグ配列でないこと O(H*W)",
+			"vector<string> rotate_vec(const vector<string>& vec) {",
+				"if (vec.empty()) return {};",
+				"vector<string> rotated(vec[0].size(), string(vec.size(), ' '));",
+				"for (int i = 0; i < (int)vec.size(); ++i) {",
+					"for (int j = 0; j < (int)vec[i].size(); ++j) {",
+						"rotated[j][(int)vec.size() - i - 1] = vec[i][j];",
+					"}",
+				"}",
+				"return rotated;",
+			"}",
+			"// 二次元配列を反時計回りに90度だけ回転させたものを返す",
+			"// 制約: 引数は空配列でないこと ジャグ配列でないこと O(H*W)",
+			"template<typename T> inline vector<vector<T>> rotate_vec(const vector<vector<T>>& vec){",
+				"if (vec.empty()) return {};",
+				"vector<vector<T>> rotated(vec[0].size(), vector<T>(vec.size()));",
+				"for (int i = 0; i < (int)vec.size(); ++i) {",
+					"for (int j = 0; j < (int)vec[i].size(); ++j) {",
+						"rotated[j][(int)vec.size() - i - 1] = vec[i][j];",
+					"}",
+				"}",
+				"return rotated;",
+			"}"
+		]
+	}
+
+}
