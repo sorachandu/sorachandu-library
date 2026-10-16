@@ -1,3 +1,5 @@
+// verification-helper: IGNORE
+
 #include <cassert>
 #include <type_traits>
 

@@ -1,3 +1,4 @@
+// verification-helper: IGNORE
 // 重軽分解と全方位木DPを、全ての根・頂点について単純解と比較するローカル検証。
 #include <algorithm>
 #include <cassert>

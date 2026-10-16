@@ -1,3 +1,4 @@
+// verification-helper: IGNORE
 #define PROBLEM "https://atcoder.jp/contests/abc174/tasks/abc174_f"
 
 #include <iostream>

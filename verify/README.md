@@ -3,7 +3,8 @@
 各検証用 `.cpp` は対応するヘッダを include する独立したプログラムです。
 `PROBLEM` があるファイルは、記載した問題の入出力形式で実行します。
 `PROBLEM` がないファイルはローカルの assert による検証です。コンパイル時に
-`NDEBUG` を定義しないでください。oj-verify 用の問題は未指定です。
+`NDEBUG` を定義しないでください。先頭の `// verification-helper: IGNORE` により
+`oj-verify run` からは除外し、個別にコンパイル・実行します。
 
 例（リポジトリのルートから）:
 
@@ -45,3 +46,15 @@ g++ -std=c++23 -O2 -I /path/to/ac-library verify/AtCoderCombination.test.cpp -o 
 
 `Fraction.test.cpp` はNaNの順序・ハッシュと四則演算、`FastPrimeFact.test.cpp` は
 素数判定・素因数分解の単純解比較と64bit境界付近の回帰例を検証します。
+
+Library Checker向けの検証:
+
+- `PrimalityTest.test.cpp`: `FastPrimeFact.hpp` の素数判定（素因数分解はローカル検証のみ）。
+- `BinomialCoefficientPrimeMod.test.cpp`: ACL非依存の動的modintで `Combination` の二項係数を検証。最大nをMとして時間・空間O(M + T)。
+- `VertexAddPathSum.test.cpp`: HLDとFenwickTreeによる点加算・頂点パス和。前処理O(N log N)、点加算O(log N)、パス和O(log² N)、空間O(N)。
+- `FenwickTree.test.cpp`: 点加算・区間和。
+- `DisjointSparseTable.test.cpp`: 静的区間最小値。
+
+AtCoder向けの `Mo.test.cpp` と `RangeDistinctCount.cpp` は手動提出・使い方の例示用に
+残し、`oj-verify` の対象から除外します。`PROBLEM` は対応する問題の参照用です。
+手動提出で確認した場合は、提出URLを各ファイルにコメントで記録します。
