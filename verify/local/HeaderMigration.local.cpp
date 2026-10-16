@@ -1,4 +1,3 @@
-// verification-helper: IGNORE
 #include <algorithm>
 #include <cassert>
 #include <cmath>
@@ -9,19 +8,19 @@
 #include <string>
 #include <vector>
 
-#include "../data_structure/Compression.hpp"
-#include "../data_structure/Doubling.hpp"
-#include "../data_structure/PotentialUF.hpp"
-#include "../graph/LowLink.hpp"
-#include "../graph/LowestCommonAncestor.hpp"
-#include "../math/Eratosthenes.hpp"
-#include "../math/Matrix.hpp"
-#include "../math/Pow.hpp"
-#include "../string/RollingHash.hpp"
-#include "../string/RunLengthEncoding.hpp"
-#include "../string/Trie.hpp"
-#include "../utility/RangeRandom.hpp"
-#include "../utility/Timer.hpp"
+#include "../../data_structure/Compression.hpp"
+#include "../../data_structure/Doubling.hpp"
+#include "../../data_structure/PotentialUF.hpp"
+#include "../../graph/LowLink.hpp"
+#include "../../graph/LowestCommonAncestor.hpp"
+#include "../../math/Eratosthenes.hpp"
+#include "../../math/Matrix.hpp"
+#include "../../math/Pow.hpp"
+#include "../../string/RollingHash.hpp"
+#include "../../string/RunLengthEncoding.hpp"
+#include "../../string/Trie.hpp"
+#include "../../utility/RangeRandom.hpp"
+#include "../../utility/Timer.hpp"
 
 // ヘッダ移行に伴う境界ケースと、単純解との比較を行うローカル検証。
 int main() {

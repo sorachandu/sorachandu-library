@@ -154,8 +154,8 @@ HLD・rerootingDPとも再帰深さは最悪O(N)で、長いパスではスタ�
   `floor_sum_unsigned` がinlineでなく、2翻訳単位からincludeすると多重定義で失敗する。
   `<atcoder/modint>` だけでも同じ問題を再現した。外部ACLは変更していない。
 - C++23、`-Wall -Wextra -Werror` で確認。
-- `verify/HeaderMigration.test.cpp`・`DSUAndFolds.test.cpp`・`Combination.test.cpp` に境界ケースと単純解比較を用意。
-- `verify/AtCoderCombination.test.cpp` は外部ACLの静的・動的modintを使って検証。
+- `verify/local/HeaderMigration.local.cpp`・`DSUAndFolds.local.cpp`・`Combination.local.cpp` に境界ケースと単純解比較を用意。
+- `verify/AtCoderCombination.local.cpp` は外部ACLの静的・動的modintを使って検証。
 - AddressSanitizer・UndefinedBehaviorSanitizerでローカル検証。
   実行環境の制約でLeakSanitizerは無効化。
 - Geometryの基本操作・既存の符号付き距離、MultipleSortの並べ替え・添字対応・長さ不一致をローカル検証。

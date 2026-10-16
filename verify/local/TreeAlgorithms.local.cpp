@@ -1,4 +1,3 @@
-// verification-helper: IGNORE
 // 重軽分解と全方位木DPを、全ての根・頂点について単純解と比較するローカル検証。
 #include <algorithm>
 #include <cassert>
@@ -8,8 +7,8 @@
 #include <ranges>
 #include <utility>
 #include <vector>
-#include "../graph/HeavyLightDecomposition.hpp"
-#include "../graph/RerootingDP.hpp"
+#include "../../graph/HeavyLightDecomposition.hpp"
+#include "../../graph/RerootingDP.hpp"
 // 頂点値と辺寄与を異なる型にして、コールバックの型契約も確認する。
 struct VertexValue { long long count = 0, sum = 0; };
 struct EdgeValue { long long count = 0, sum = 0; };

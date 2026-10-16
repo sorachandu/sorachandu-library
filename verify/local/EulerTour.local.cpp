@@ -1,8 +1,7 @@
-// verification-helper: IGNORE
 #include <cassert>
 #include <vector>
 
-#include "../graph/EulerTour.hpp"
+#include "../../graph/EulerTour.hpp"
 
 // 対応するジャッジ問題を指定しないローカル検証。
 int main() {

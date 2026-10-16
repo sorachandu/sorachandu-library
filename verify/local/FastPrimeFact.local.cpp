@@ -1,9 +1,8 @@
-// verification-helper: IGNORE
 #include <algorithm>
 #include <cassert>
 #include <vector>
 
-#include "../math/FastPrimeFact.hpp"
+#include "../../math/FastPrimeFact.hpp"
 
 // 篩との比較、素数冪、大きな合成数でのオーバーフロー回帰を検証する。
 int main() {

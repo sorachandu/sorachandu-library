@@ -1,5 +1,4 @@
-// verification-helper: IGNORE
-#define PROBLEM "https://atcoder.jp/contests/abc242/tasks/abc242_g"
+// 問題: https://atcoder.jp/contests/abc242/tasks/abc242_g
 
 #include <algorithm>
 #include <iostream>

@@ -1,0 +1,9 @@
+# 自前のJekyllビルドでも、バッジが参照するsite.githubを生成する。
+plugins:
+  - jemoji
+  - jekyll-redirect-from
+  - jekyll-github-metadata
+
+# ローカル検証は別のCIステップで管理する。
+exclude:
+  - verify/local

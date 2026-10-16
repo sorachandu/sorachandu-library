@@ -1,4 +1,3 @@
-// verification-helper: IGNORE
 #include <algorithm>
 #include <cassert>
 #include <limits>
@@ -7,7 +6,7 @@
 #include <unordered_set>
 #include <vector>
 
-#include "../math/Fraction.hpp"
+#include "../../math/Fraction.hpp"
 
 // 中間積の回帰例、NaNの全順序、小さい値の単純解との比較。
 int main() {

@@ -1,9 +1,7 @@
-// verification-helper: IGNORE
-
 #include <cassert>
 #include <type_traits>
 
-#include "../math/AtCoderCombination.hpp"
+#include "../../math/AtCoderCombination.hpp"
 
 // 外部ACLのincludeパスを指定して実行するローカル検証。
 int main() {

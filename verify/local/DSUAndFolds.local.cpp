@@ -1,4 +1,3 @@
-// verification-helper: IGNORE
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -7,10 +6,10 @@
 #include <random>
 #include <vector>
 
-#include "../data_structure/DSU.hpp"
-#include "../data_structure/DSUChoose.hpp"
-#include "../data_structure/DisjointSparseTable.hpp"
-#include "../data_structure/Folds.hpp"
+#include "../../data_structure/DSU.hpp"
+#include "../../data_structure/DSUChoose.hpp"
+#include "../../data_structure/DisjointSparseTable.hpp"
+#include "../../data_structure/Folds.hpp"
 
 // 非可換な行列積で左右累積と除外時の順序を検証する。
 struct MatrixProduct {

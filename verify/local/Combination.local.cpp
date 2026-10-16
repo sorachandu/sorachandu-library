@@ -1,8 +1,7 @@
-// verification-helper: IGNORE
 #include <cassert>
 #include <vector>
 
-#include "../math/Combination.hpp"
+#include "../../math/Combination.hpp"
 
 // ACLを使わず、必要最小限の演算だけを持つmodintで汎用版を検証する。
 template <int Mod>

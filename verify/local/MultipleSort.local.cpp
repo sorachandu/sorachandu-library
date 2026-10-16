@@ -1,4 +1,3 @@
-// verification-helper: IGNORE
 #include <algorithm>
 #include <cassert>
 #include <functional>
@@ -7,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "../utility/MultipleSort.hpp"
+#include "../../utility/MultipleSort.hpp"
 
 // 先頭配列だけでの比較と、元の添字に対応する並べ替えを検証する。
 int main() {
