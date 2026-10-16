@@ -10,12 +10,7 @@
 
 namespace sora {
 
-/***
-  (隣接リスト形式)木 G に対する根を root として Lowest Common Ancestor を求める構造体
-  Gを直接渡さず辺を逐次追加してからbuildしてもよい
-  lca(u,v): u と v の LCA を求める。計算量 O(logn)
-  前処理: 時間O(nlogn), 空間O(nlogn)
-***/
+// 無向木のLCA・距離を二分累乗で処理する。前処理時間・空間O(N log N)。
 class LowestCommonAncestor{
     int n,logn;
     std::vector<int> depth,parent_edge_id;
@@ -101,16 +96,13 @@ class LowestCommonAncestor{
         int lca(int u,int v) const {
             assert(0<=u and u<n);
             assert(0<=v and v<n);
-            // vのほうがuより深いように正規化
             if(depth[u]>depth[v]) std::swap(u,v);
-            // vの深さをuの深さと等しくなるよう、vの親を辿らせる
             for(int k=0;k<logn;k++){
                 if(((depth[v]-depth[u])>>k) & 1){
                     v=ancestor[k][v];
                 }
             }
             if(u==v) return u;
-            // 二分探索でLCAを求める
             for(int k=logn;k--;){
                 if(ancestor[k][u]!=ancestor[k][v]){
                     u=ancestor[k][u];
@@ -147,8 +139,6 @@ class LowestCommonAncestor{
             return x;
         }
 
-        // 実装してないけど、(u,v) 間パスに含まれる辺の最大(最小)コストとかもlogNで求められる
-        // https://ikatakos.com/pot/programming_algorithm/graph_theory/lowest_common_ancestor
 };
 
 } // namespace sora

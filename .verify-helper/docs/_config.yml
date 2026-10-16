@@ -7,3 +7,4 @@ plugins:
 # ローカル検証は別のCIステップで管理する。
 exclude:
   - verify/local
+  - verify/RunLocalTests.py

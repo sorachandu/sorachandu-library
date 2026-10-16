@@ -5,6 +5,7 @@
 
 namespace sora{
 
+// 点加算・区間和。T{}を零元とする加法可換群を使い、空間O(N)。
 template<typename T>
 class FenwickTree{
 private:

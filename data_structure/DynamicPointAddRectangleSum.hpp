@@ -11,7 +11,6 @@
 namespace sora {
 
 // 座標の事前登録なしで点加算・長方形和を処理する。
-// 2冪サイズの静的重み付きウェーブレット行列をマージして管理する。
 // Coordは全順序を持つコピー可能な型、TはT{}を零元とする加法可換群。
 // 各演算・コピーはO(1)とし、代数的な法則は利用者が保証する。
 // M回のaddに対し空間O(M log(M + 2))。各ブロックの点数はintの範囲内。
@@ -128,7 +127,6 @@ private:
     std::size_t count = 0;
 
 public:
-    // 空の点集合を構築する。O(1)。
     DynamicPointAddRectangleSum() = default;
 
     // (x, y)にdeltaを加算する。座標の重複・負の加算量も許す。
@@ -148,8 +146,7 @@ public:
         ++count;
     }
 
-    // [l, r) × [d, u)の重みの和。空・逆向きの長方形は零元を返す。
-    // O(log²(M + 2))。
+    // [l, r) × [d, u)の重みの和。空・逆向きの長方形は零元を返す。 O(log²(M + 2))。
     [[nodiscard]] T rectangle_sum(const Coord& l, const Coord& d,
                                   const Coord& r, const Coord& u) const {
         if (!(l < r) || !(d < u)) return T{};
@@ -161,7 +158,6 @@ public:
 
     // 異なる座標数ではなく、最後のclear以降のadd呼び出し回数。O(1)。
     [[nodiscard]] std::size_t size() const { return count; }
-    // addの呼び出しがないかを返す。O(1)。
     [[nodiscard]] bool empty() const { return count == 0; }
     // 全点を削除する。O(M log(M + 2))。
     void clear() { blocks.clear(); count = 0; }

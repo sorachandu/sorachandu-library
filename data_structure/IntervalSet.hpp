@@ -22,8 +22,7 @@ private:
     std::set<Interval> s;
 
 public:
-    // [l, r)を追加する。l >= rなら何もしない。
-    // O(log(M + 1) + k)、kは併合する区間数。
+    // [l, r)を追加する。l >= rなら何もしない。 O(log(M + 1) + k)、kは併合する区間数。
     void insert(ll l, ll r) {
         if (l >= r) return;
         auto it = s.lower_bound({l, l});
@@ -37,8 +36,7 @@ public:
         s.emplace_hint(it, l, r);
     }
 
-    // [l, r)を削除する。l >= rなら何もしない。
-    // O(log(M + 1) + k)、kは交差する区間数。
+    // [l, r)を削除する。l >= rなら何もしない。 O(log(M + 1) + k)、kは交差する区間数。
     void erase(ll l, ll r) {
         if (l >= r) return;
         auto it = s.lower_bound({l, l});
@@ -92,9 +90,7 @@ public:
 
     // 区間を左端の昇順で参照する。O(1)。変更操作で反復子が無効になり得る。
     const std::set<Interval>& intervals() const { return s; }
-    // 保持区間数を返す。O(1)。
     std::size_t size() const { return s.size(); }
-    // 空集合かを返す。O(1)。
     bool empty() const { return s.empty(); }
     // 全区間を削除する。O(M)。
     void clear() { s.clear(); }

@@ -88,8 +88,7 @@ struct Trie {
     }
 
     // sを1個削除
-    // 存在しなければfalse
-    // O(|s|)
+    // 存在しなければfalse O(|s|)
     bool erase(const std::string& s) {
         if (count_word(s) == 0)
             return false;
@@ -108,8 +107,7 @@ struct Trie {
     }
 
     // sをすべて削除
-    // 削除した個数を返す
-    // O(|s|)
+    // 削除した個数を返す O(|s|)
     int erase_all(const std::string& s) {
         int cnt = count_word(s);
 
@@ -129,20 +127,16 @@ struct Trie {
         return cnt;
     }
 
-    // sより辞書順で小さい文字列の個数（重複込み）
-    // O(26|s|) = O(|s|)
+    // sより辞書順で小さい文字列の個数（重複込み） O(26|s|) = O(|s|)
     int count_less(const std::string& s) const {
         int v = 0;
         int res = 0;
 
         for (char c : s) {
-            // 現在のprefixそのものが文字列なら、
-            // sより短いので辞書順で前
             res += t[v].end;
 
             int d = c - 'a';
 
-            // 次の文字がcより小さいものはすべてsより前
             for (int x = 0; x < d; x++) {
                 int u = t[v].nxt[x];
                 if (u != -1)
@@ -155,19 +149,16 @@ struct Trie {
             v = t[v].nxt[d];
         }
 
-        // s自身は含めない
         return res;
     }
     
-    // s以下の文字列数
-    // O(|s|)
+    // s以下の文字列数 O(|s|)
     int count_less_equal(const std::string& s) const {
         return count_less(s) + count_word(s);
     }
 
     // 辞書順でk番目の文字列（0-indexed、重複込み）
-    // 存在しなければnullopt
-    // O(26 * 答えの長さ)
+    // 存在しなければnullopt O(26 * 答えの長さ)
     std::optional<std::string> kth(int k) const {
         if (k < 0 || k >= size())
             return std::nullopt;
@@ -176,7 +167,6 @@ struct Trie {
         std::string res;
 
         while (true) {
-            // 現在のprefixそのものが先に並ぶ
             if (k < t[v].end)
                 return res;
 
@@ -206,15 +196,13 @@ struct Trie {
         }
     }
 
-    // s以上で辞書順最小の文字列
-    // O(|s| + 26 * 答えの長さ)
+    // s以上で辞書順最小の文字列 O(|s| + 26 * 答えの長さ)
     std::optional<std::string> lower_bound(const std::string& s) const {
         int k = count_less(s);
         return kth(k);
     }
 
-    // sより辞書順で大きい最小の文字列
-    // O(|s| + 26 * 答えの長さ)
+    // sより辞書順で大きい最小の文字列 O(|s| + 26 * 答えの長さ)
     std::optional<std::string> upper_bound(const std::string& s) const {
         int k = count_less_equal(s);
         return kth(k);

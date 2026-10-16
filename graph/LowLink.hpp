@@ -6,15 +6,10 @@
 
 namespace sora {
 
-/***
-  LowLink　無向重みなしグラフについて関節点と橋を列挙
-  Constructor: O(V+E)
-  関節点の集合: std::vector<int> aps
-  橋(の端点)の集合: std::vector<std::pair<int,int>> bridges
-  reference: https://algo-logic.info/bridge-lowlink/
-***/
-// 無向単純グラフ用。入力は変更しない。入力グラフは本オブジェクトより長く生存すること。
-// 多重辺には非対応。再帰深さは最大 O(V)、入力を除く空間 O(V)。
+// 無向単純グラフの関節点と橋を列挙する。時間O(V + E)、入力以外の空間O(V)。
+// 入力は変更しない。参照を保持するため本オブジェクトより長く生存すること。
+// 多重辺には非対応。再帰深さは最大O(V)。
+// 参考: https://algo-logic.info/bridge-lowlink/
 struct LowLink{
     using Graph=std::vector<std::vector<int>>;
     const Graph &g;
@@ -31,8 +26,6 @@ struct LowLink{
         for(int i=0;i<n;i++){
             if(!used[i]) k=dfs(i,k,-1);
         }
-        // ranges::sort(aps);
-        // ranges::sort(bridges);
     }
 
 private:

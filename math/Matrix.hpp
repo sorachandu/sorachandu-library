@@ -7,16 +7,7 @@
 
 namespace sora {
 
-/*//--------------------------------------------------------
-ei1333さんのライブラリをそのまま拝借
-refer: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
-
-和, 差:  O(N^2)
-積:      O(N^3)
-行列累乗: O(N^3 logk)
-行列式(determinant): O(N^3)
-*///--------------------------------------------------------
-
+// ei1333さんのライブラリを移植。出典: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
 // 行列演算。T の四則演算を O(1) とする。入力はコピーして保持する。
 // 空行列は 0×0 として扱う。高さ0・正の幅の表現には対応しない。
 template<class T>

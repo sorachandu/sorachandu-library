@@ -7,13 +7,9 @@
 
 namespace sora {
 
-/*//--------------------------------------------------------
-木に対して重軽分解をする構造体
-refer:
-https://info.atcoder.jp/entry/algorithm_lectures/heavy_light_decomposition
-https://nachiavivias.github.io/cp-library/cpp/tree/heavy-light-decomposition.html
-*///--------------------------------------------------------
-// 木の各頂点を重いパスへ分解し、祖先・距離・パス上の移動を処理する。
+// 木の重軽分解。祖先・距離・パス上の移動を処理する。
+// 参考: https://info.atcoder.jp/entry/algorithm_lectures/heavy_light_decomposition
+// https://nachiavivias.github.io/cp-library/cpp/tree/heavy-light-decomposition.html
 struct HeavyLightDecomposition{
 private:
     int n;
@@ -71,23 +67,17 @@ public:
 
     // 時間O(1)。
     int num_vertices() const { return n; }
-    // 頂点vの深さ (dep)
-    // 時間O(1)。
+    // 頂点vの深さ (dep) O(1)。
     int depth(int v) const { return dep[v]; }
-    // 頂点vがHLD配列上で何番目か (id)
-    // 時間O(1)。
+    // 頂点vがHLD配列上で何番目か (id) O(1)。
     int to_seq(int v) const { return id[v]; }
-    // HLD配列[seqidx]の頂点番号 (vertex)
-    // 時間O(1)。
+    // HLD配列[seqidx]の頂点番号 (vertex) O(1)。
     int to_vertex(int seqidx) const { return vertex[seqidx]; }
-    // 頂点vの親 (根なら-1)
-    // 時間O(1)。
+    // 頂点vの親 (根なら-1) O(1)。
     int parent(int v) const { return par[v]; }
-    // vを含む重いパスの先頭頂点。
-    // 時間O(1)。
+    // vを含む重いパスの先頭頂点。 O(1)。
     int heavy_root(int v) const { return head[v]; }
-    // vの重い子。存在しなければ-1。
-    // 時間O(1)。
+    // vの重い子。存在しなければ-1。 O(1)。
     int heavy_child(int v) const {
         if(to_seq(v)==n-1) return -1;
         int cand=to_vertex(to_seq(v)+1);
@@ -95,14 +85,11 @@ public:
         return -1;
     }
 
-    // uとvが同じ重いパスに属するか。
-    // 時間O(1)。
+    // uとvが同じ重いパスに属するか。 O(1)。
     bool same(int u,int v) const { return head[u]==head[v]; }
-    // 頂点uと頂点vについてHLD配列上でu<vを成立させる (外部クエリ処理用)
-    // 時間O(1)。
+    // 頂点uと頂点vについてHLD配列上でu<vを成立させる (外部クエリ処理用) O(1)。
     void normalize_pair(int &u,int &v){ if(id[u]>id[v]) std::swap(u,v); }
-    // 重いパスの先頭からvまでの距離。
-    // 時間O(1)。
+    // 重いパスの先頭からvまでの距離。 O(1)。
     int dist_to_heavy_root(int v) const { return id[v]-id[head[v]]; }
     // vを含む重いパスの先頭から、頂点番号列を返す。
     // stop_at_vertex=trueならvで止まり、falseならパス末尾まで返す。
@@ -117,8 +104,7 @@ public:
         }
         return path;
     }
-    // Level Ancestor　頂点vの祖先であって深さdにある頂点番号を返す
-    // O(logN)
+    // Level Ancestor　頂点vの祖先であって深さdにある頂点番号を返す O(logN)
     int la(int v,int d) const {
         assert(0 <= d && d <= dep[v]);
         while(dep[head[v]]>d){
@@ -126,8 +112,7 @@ public:
         }
         return vertex[id[v]-(dep[v]-d)];
     }
-    // Lowest Common Ancestor　頂点u,vの最近共通祖先なる頂点番号を返す
-    // O(logN)
+    // Lowest Common Ancestor　頂点u,vの最近共通祖先なる頂点番号を返す O(logN)
     int lca(int u,int v) const {
         while(!same(u,v)){
             if(id[u]>id[v]) std::swap(u,v);

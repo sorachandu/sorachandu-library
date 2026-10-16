@@ -7,13 +7,8 @@
 
 namespace sora {
 
-/***
-  ポテンシャル付きUnionFind
-  Abel は可換群の加減算を持つ型。sum_unity には加法単位元を渡す。
-  構築 O(N)、root/potential/same/merge/diff は償却 O(α(N))、空間 O(N)。
-  群演算は O(1) とする。diff は同じ連結成分内でのみ呼ぶ。
-  refer: https://qiita.com/drken/items/cce6fc5c579051e64fab 
-***/
+// 加法可換群のポテンシャル差を管理するUnion-Find。群演算はO(1)、空間O(N)。
+// 参考: https://qiita.com/drken/items/cce6fc5c579051e64fab
 template<typename Abel> class PotentialUF{
     int n;
     std::vector<int> par;

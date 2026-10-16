@@ -10,13 +10,9 @@
 
 namespace sora {
 
-/*//----------------------
-Disjoint Sparse Table (DST)
-モノイドの区間積クエリを、前処理O(Nlog(N))、クエリあたりO(1)で処理
-refer:
-https://info.atcoder.jp/entry/algorithm_lectures/disjoint_sparse_table
-https://noshi91.hatenablog.com/entry/2023/04/07/165310
-*///----------------------
+// モノイドの静的区間積。演算・コピーをO(1)として構築時間・空間O(N log N)、取得O(1)。
+// 参考: https://info.atcoder.jp/entry/algorithm_lectures/disjoint_sparse_table
+// https://noshi91.hatenablog.com/entry/2023/04/07/165310
 template <Monoid M>
 class DisjointSparseTable{
     using Type=typename M::T;

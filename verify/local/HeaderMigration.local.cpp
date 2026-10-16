@@ -17,7 +17,7 @@
 #include "../../math/Matrix.hpp"
 #include "../../math/Pow.hpp"
 #include "../../string/RollingHash.hpp"
-#include "../../string/RunLengthEncoding.hpp"
+#include "../../utility/RunLengthEncoding.hpp"
 #include "../../string/Trie.hpp"
 #include "../../utility/RangeRandom.hpp"
 #include "../../utility/Timer.hpp"
