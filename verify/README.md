@@ -74,3 +74,8 @@ Library Checker向けの検証:
 AtCoder向けの `examples/Mo.cpp` と `examples/RangeDistinctCount.cpp` は手動提出用です。
 helperが検証ファイルとして認識しない名前にし、問題URLを参照用コメントとして残しています。
 手動提出で確認した場合は、提出URLを各ファイルにコメントで記録します。
+
+- `SCC.test.cpp`: 強連結成分分解と成分のトポロジカル順。
+- `DynamicPointAddRectangleSum.test.cpp`: 座標の事前登録をしない点加算・長方形和。
+- `AddedLibraries.local.cpp`: SCCの到達可能性・縮約グラフとの比較、20万頂点の鎖、
+  IntervalSetの集合との比較と64bit端点、長方形和の全点走査とのランダム比較。
