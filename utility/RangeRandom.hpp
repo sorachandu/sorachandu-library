@@ -17,7 +17,7 @@ class RangeRandom{
         RangeRandom() : engine(seed_gen()) {}
         RangeRandom(std::int64_t l, std::int64_t r) : engine(seed_gen()), dist(l,r) { assert(l <= r); }
         
-        // 時間 O(1)。現在の生成する値の範囲をstd::pairで返す
+        // 時間 O(1)。現在設定されている生成範囲をstd::pairで返す
         std::pair<std::int64_t,std::int64_t> get_range() const {
             return std::make_pair(dist.min(),dist.max());
         }

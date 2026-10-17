@@ -167,7 +167,7 @@ private:
             int L1 = B[lvl].rank1(L) + zeros[lvl], R1 = B[lvl].rank1(R) + zeros[lvl];
 
             if ((val >> d) & 1) {
-                // 0側に分岐する要素はすべて val 未満。それらの pre 条件を inner_WM で判定
+                // 0側に分岐する要素はすべて val 未満。それらが pre の条件を満たすかを inner_WM で判定する
                 ans += inner_WM[lvl + 1].count_less_than(L0, R0, limit);
                 L = L1; R = R1;
             } else {

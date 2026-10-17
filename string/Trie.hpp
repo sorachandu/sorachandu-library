@@ -11,7 +11,7 @@ namespace sora {
 struct Trie {
     // 文字列の接頭辞を表すノード。
     struct Node {
-        int pass = 0; // このノードをprefixとする文字列数（重複込み）
+        int pass = 0; // このノードが表すprefixを持つ文字列数（重複込み）
         int end  = 0; // このノードで終わる文字列数
         std::array<int, 26> nxt;
 
@@ -22,7 +22,7 @@ struct Trie {
 
     std::vector<Node> t;
 
-    // 空の Trie を構築。時間・空間 O(1)。
+    // 空の Trie を構築する。時間・空間 O(1)。
     Trie() : t(1) {}
 
     // Trie内の文字列数（重複込み） O(1)
@@ -30,12 +30,12 @@ struct Trie {
         return t[0].pass;
     }
 
-    // 空かを判定。時間 O(1)。
+    // 空かを判定する。時間 O(1)。
     bool empty() const {
         return size() == 0;
     }
 
-    // sを1個追加 O(|s|)
+    // sを1個追加する O(|s|)
     void insert(const std::string& s) {
         int v = 0;
         t[v].pass++;
@@ -71,7 +71,7 @@ struct Trie {
         return t[v].end;
     }
 
-    // prefixがpである文字列数 O(|p|)
+    // pをprefixに持つ文字列数 O(|p|)
     int count_prefix(const std::string& p) const {
         int v = 0;
 

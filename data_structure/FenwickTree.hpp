@@ -24,7 +24,7 @@ public:
         }
     }
 
-    // [0,r)のsum : O(logN)
+    // [0,r)の和を返す : O(logN)
     T sum(int r) const {
         assert(0<=r and r<=n_);
         T res{};
@@ -34,7 +34,7 @@ public:
         return res;
     }
 
-    // [l,r)のsum : O(logN)
+    // [l,r)の和を返す : O(logN)
     T sum(int l,int r) const {
         assert(0<=l and l<=r and r<=n_);
         return sum(r)-sum(l);

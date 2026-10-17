@@ -17,17 +17,17 @@ template<typename T> struct Compression{
         for(int i=0;i<n;i++) id[i]=std::lower_bound(cmp.begin(),cmp.end(),a[i])-cmp.begin();
     }
 
-    // 圧縮後の添字を取得。時間 O(1)。
+    // 圧縮後の添字を取得する。時間 O(1)。
     const int &operator[](int k) const {
         return id[k];
     }
 
-    // 圧縮後の添字を取得。時間 O(1)。
+    // 圧縮後の添字を取得する。時間 O(1)。
     int get(int k) const {
         return id[k];
     }
 
-    // 異なる値の個数。時間 O(1)。
+    // 異なる値の個数を返す。時間 O(1)。
     int size() const {
         return std::ssize(cmp);
     }

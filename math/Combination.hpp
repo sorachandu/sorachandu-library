@@ -25,7 +25,7 @@ class Combination {
     std::vector<ModInt> factorial, inverse_factorial;
 
 public:
-    // Nまでの値を前計算。時間・空間O(N)。N=0にも対応する。
+    // Nまでの値を前計算する。時間・空間O(N)。N=0にも対応する。
     explicit Combination(int n) : modulus(ModInt::mod()) {
         assert(modulus >= 2 && 0 <= n && n < modulus);
         factorial.assign(n + 1, ModInt{1});

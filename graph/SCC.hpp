@@ -34,7 +34,7 @@ struct SCCResult {
         return static_cast<int>(groups[c].size());
     }
 
-    // 必要な場合のみ生成。O(K + L)、K: 成分数、L: 縮約後の辺数。
+    // 必要な場合のみ生成する。O(K + L)、K: 成分数、L: 縮約後の辺数。
     [[nodiscard]] std::vector<std::vector<int>> reverse_dag() const {
         std::vector<std::vector<int>> reversed(count());
         for (int c = 0; c < count(); ++c) {
@@ -49,8 +49,8 @@ struct SCCResult {
 
 // ACL非依存、非再帰Kosaraju法。
 // コンストラクタ O(N)、add_edge ならしO(1)、build O(N+M)。
-// グラフ保持・buildの作業領域・結果はそれぞれO(N+M)以内。
-// NとMはintの範囲内とする。無効な引数のチェックはassert。
+// グラフの保持・buildの作業領域・結果に使う空間はそれぞれO(N+M)以内。
+// NとMはintの範囲内とする。無効な引数はassertでチェックする。
 class SCCGraph {
 public:
     // N頂点の空グラフを構築する。O(N)。

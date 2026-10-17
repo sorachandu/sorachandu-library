@@ -9,9 +9,9 @@
 namespace sora {
 
 // 先頭配列をcompで比較して、全配列を同じ順序に並べ替える。入力配列を変更する。
-// 戻り値のindices[i]は、並べ替え後のi番目に対応する元の添字。
-// 同じキーの順序は未規定。配列の長さは同じで、配列同士は別オブジェクトであること。
-// K個の長さNの配列について、比較・コピーをO(1)として時間O(K + N log(N+1) + KN)、追加空間O(N)。
+// 戻り値のindices[i]は並べ替え後のi番目に対応する元の添字を表す。
+// 同じキーを持つ要素同士の順序は未規定。配列の長さは同じで、配列同士は別オブジェクトであること。
+// 長さNの配列K個について、比較・コピーをO(1)として時間O(K + N log(N+1) + KN)、追加空間O(N)。
 template <typename Compare, typename First, typename... Rest>
 std::vector<std::size_t> multiple_sort(Compare comp, First& first, Rest&... rest) {
     const std::size_t n = first.size();

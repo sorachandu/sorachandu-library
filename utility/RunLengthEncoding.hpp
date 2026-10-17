@@ -8,7 +8,7 @@
 namespace sora {
 
 // ランレングス圧縮
-// 時間 O(N)、出力空間 O(N)。入力は変更しない。空入力の出力は空。
+// 時間 O(N)、出力空間 O(N)。入力は変更しない。空入力では空を返す。
 inline std::vector<std::pair<char,long long>> run_length_encoding(const std::string& s){
     if (s.empty()) return {};
     const int n = std::ssize(s);

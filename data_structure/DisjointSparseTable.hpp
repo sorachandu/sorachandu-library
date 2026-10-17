@@ -44,7 +44,7 @@ public:
         return prod(p,p+1);
     }
 
-    // 半開区間 [l, r) の積。時間 O(1)、空区間では単位元。
+    // 半開区間 [l, r) の積。時間 O(1)、空区間では単位元を返す。
     Type prod(int l,int r) const {
         assert(0<=l and l<=r and r<=size());
         r++;

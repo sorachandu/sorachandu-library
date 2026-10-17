@@ -11,7 +11,7 @@
 namespace sora {
 
 // 整数の半開区間[l, r)を管理し、重なる区間・隣接区間を併合する。
-// Mを保持区間数として空間O(M)。端点はlong longの範囲内とする。
+// 保持する区間の数をMとして空間O(M)。端点はlong longの範囲内とする。
 class IntervalSet {
 public:
     using Coordinate = long long;

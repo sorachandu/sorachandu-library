@@ -19,7 +19,7 @@ refer to: https://noya2ruler.github.io/noya2_Library/tree/rerootingdp.hpp
 // 逆向きには~eidを使うため、g[c]には(v,~eid)を格納すること。
 // V/Eはデフォルト構築・コピーが可能であること。
 // 各演算・コピーをO(1)として、前処理時間・空間O(N)。再帰深さは最悪O(N)。
-// rootは内部の前処理用の根。戻り値では全ての根に対するクエリを処理できる。
+// rootは内部の前処理用の根。戻り値のオブジェクトでは全ての根に対するクエリを処理できる。
 template<class V, class E>
 auto rerootingdp(auto op, E e, auto put_edge, auto put_vertex, const std::vector<std::vector<std::pair<int, int>>> &g, int root = 0){
     // 各根の木全体・部分木のDP値を保持するクエリオブジェクト。

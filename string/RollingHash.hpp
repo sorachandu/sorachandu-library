@@ -10,7 +10,7 @@
 
 namespace sora {
 
-// 2^61-1 を法とするローリングハッシュ。全インスタンスでランダムな基数を共有。
+// 2^61-1 を法とするローリングハッシュ。全インスタンスでランダムな基数を共有する。
 // 衝突の可能性がある。クエリは O(1)、保持空間 O(N)。
 struct RollingHash{
 	using u64 = std::uint64_t;
@@ -43,7 +43,7 @@ struct RollingHash{
 		// ムーブは時間 O(1)。
 		RollingHash(RollingHash&&) = default;
 
-		// 空文字列を構築。時間・空間 O(1)（初回の乱数源の時間を除く）。
+		// 空文字列を構築する。時間・空間 O(1)（初回の乱数源の時間を除く）。
 		RollingHash() : RollingHash(std::string{}) {}
 		// 時間・空間 O(N)。入力は変更しない。N は uint32_t に収まること。
 		RollingHash(const std::string &str) : str(str){
@@ -63,9 +63,9 @@ struct RollingHash{
 			}
 		}
 
-		// 全体のハッシュ。時間 O(1)。
+		// 全体のハッシュを返す。時間 O(1)。
 		u64 hash() const { return hash_values.back(); }
-		// 半開区間 [l,r) のハッシュ。時間 O(1)。
+		// 半開区間 [l,r) のハッシュを返す。時間 O(1)。
 		u64 hash(size_type l, size_type r) const {
 		    assert(l <= r && r <= str.size());
 			u64 ret = mod + hash_values[r] - mul(hash_values[l],powers[r-l]);

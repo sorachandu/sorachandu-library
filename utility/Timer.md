@@ -5,7 +5,7 @@ documentation_of: ./Timer.hpp
 
 ## 概要
 
-std::chrono::steady_clockを使い、構築時からの経過時間を秒で取得します。保持空間O(1)。
+std::chrono::steady_clockを使い、構築時からの経過時間を秒で取得します。保持空間はO(1)です。
 
 ## API・計算量
 

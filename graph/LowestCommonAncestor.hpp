@@ -74,7 +74,7 @@ class LowestCommonAncestor{
             }
         }
 
-        // 頂点vと、その親とを接続する辺の番号を返す。時間 O(1)。
+        // 頂点vとその親を接続する辺の番号を返す。時間 O(1)。
         int get_parent_edge_id(int v) const {
             assert(0<=v and v<n);
             return parent_edge_id[v];
@@ -127,7 +127,7 @@ class LowestCommonAncestor{
             return get_distance(u,p)+get_distance(p,v) == get_distance(u,v);
         }
 
-        // 時間 O(log N)。頂点wから (u,v) 間のパスに含まれる頂点(端点含む) のうち最も近い頂点を返す
+        // 時間 O(log N)。(u,v) 間のパスに含まれる頂点(端点含む) のうち、頂点wに最も近い頂点を返す
         // 辺の重みについての最短が欲しい場合もこれでok
         int closest_on_path(int u,int v,int w) const {
             const int a=lca(u,v);

@@ -21,7 +21,7 @@ private:
     std::vector<int> head;
 
 public:
-    // 連結な無向木を重軽分解する。時間・空間O(N)。入力はコピーして変更しない。
+    // 連結な無向木を重軽分解する。時間・空間O(N)。入力をコピーし、元の木は変更しない。
     // N >= 1、rootと全ての頂点番号は[0, N)。再帰深さは最悪O(N)。
     HeavyLightDecomposition(std::vector<std::vector<int>> g,int root=0){
         n=std::ssize(g);
@@ -33,7 +33,7 @@ public:
         id.assign(n,-1);
         head.assign(n,-1);
         {
-            // 部分木サイズを求め、最大の子を隣接リストの先頭へ移す。
+            // 部分木サイズを求め、部分木サイズが最大の子を隣接リストの先頭へ移す。
             auto dfs=[&](auto &dfs, int v, int p=-1) -> void {
                 par[v]=p;
                 dep[v]=(p==-1 ? 0 : dep[p]+1);
@@ -104,7 +104,7 @@ public:
         }
         return path;
     }
-    // Level Ancestor　頂点vの祖先であって深さdにある頂点番号を返す O(logN)
+    // Level Ancestor　頂点vの祖先のうち、深さdにある頂点の番号を返す O(logN)
     int la(int v,int d) const {
         assert(0 <= d && d <= dep[v]);
         while(dep[head[v]]>d){
@@ -112,7 +112,7 @@ public:
         }
         return vertex[id[v]-(dep[v]-d)];
     }
-    // Lowest Common Ancestor　頂点u,vの最近共通祖先なる頂点番号を返す O(logN)
+    // Lowest Common Ancestor　頂点u,vの最近共通祖先の頂点番号を返す O(logN)
     int lca(int u,int v) const {
         while(!same(u,v)){
             if(id[u]>id[v]) std::swap(u,v);

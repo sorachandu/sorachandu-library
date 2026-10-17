@@ -31,7 +31,7 @@ public:
     int rpr_root(int v) { return rpr[par_root(v)]; }
 
     // choose(代表元u, 代表元v)で新しい論理代表元を選ぶ。同じ成分なら呼ばない。
-    // 償却時間O(α(N) + C)。Cはchooseの実行時間。代表元は成分内の頂点を返すこと。
+    // 償却時間O(α(N) + C)。Cはchooseの実行時間。chooseは代表元として成分内の頂点を返すこと。
     void merge(int u, int v, auto choose) {
         int ru = par_root(u), rv = par_root(v);
         if (ru == rv) return;

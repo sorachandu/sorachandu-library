@@ -37,19 +37,19 @@ template<typename Abel> class PotentialUF{
             return par[x]=r;
         }
 
-        // 代表元からのポテンシャル差。償却 O(α(N))。
+        // 代表元からのポテンシャル差を返す。償却 O(α(N))。
         inline Abel potential(int x){
             root(x);
             return diff_potential[x];
         }
 
-        // 同じ成分か判定。償却 O(α(N))。
+        // 同じ成分かを判定する。償却 O(α(N))。
         inline bool same(int x,int y){
             return root(x)==root(y);
         }
 
         // potential(y) - potential(x) = p を課す。同じ成分なら矛盾の有無によらず false。
-        // 制約を追加。償却 O(α(N))。
+        // 制約を追加する。償却 O(α(N))。
         inline bool merge(int x,int y,Abel p){
             p+=potential(x);
             p-=potential(y);
@@ -68,7 +68,7 @@ template<typename Abel> class PotentialUF{
             return potential(y) - potential(x);
         }
 
-        // 連結成分を列挙。時間 O(N α(N))、追加空間 O(N)。
+        // 連結成分を列挙する。時間 O(N α(N))、追加空間 O(N)。
         std::vector<std::vector<int>> groups(){
             std::vector<int> leader_buf(n),group_size(n);
             for(int i=0;i<n;i++){

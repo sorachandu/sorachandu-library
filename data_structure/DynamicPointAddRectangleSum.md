@@ -5,7 +5,7 @@ documentation_of: ./DynamicPointAddRectangleSum.hpp
 
 ## 概要
 
-座標の事前登録なしで点への加算と長方形和を処理します。2冪サイズの静的重み付きウェーブレット行列を保持し、二進カウンタの繰り上がりと同様にマージします。Mは最後のclear以降のadd回数、空間O(M log(M + 2))です。
+座標の事前登録なしで点への加算と長方形和を処理します。サイズが2の冪である静的重み付きウェーブレット行列を保持し、二進カウンタの繰り上がりと同様にマージします。Mは最後のclear以降のadd回数で、空間計算量はO(M log(M + 2))です。
 
 ## API・計算量
 
@@ -41,4 +41,4 @@ auto sum = points.rectangle_sum(0, 0, 5, 5);  // 4
 
 ## 検証
 
-公式問題: `verify/DynamicPointAddRectangleSum.test.cpp`。負の加算・重複座標・空領域・clearと全点走査とのランダム比較は`verify/local/AddedLibraries.local.cpp`。
+公式問題用の検証コードは`verify/DynamicPointAddRectangleSum.test.cpp`です。`verify/local/AddedLibraries.local.cpp`では、負の加算・重複座標・空領域・clearを含め、全点走査とのランダム比較を行います。

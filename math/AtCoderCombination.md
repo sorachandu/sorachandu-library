@@ -16,7 +16,7 @@ CombinationをACLのstatic_modint・dynamic_modintに限定した別名です。
 
 ## 仕様・使い方
 
-外部のAtCoder Libraryへのincludeパスが必要です。法はintに収まる素数、0 <= N < modで、動的modintは構築前に法を設定し、利用中に変更しないでください。保持空間O(N)。範囲外引数の扱いはCombinationと同じです。
+外部のAtCoder Libraryへのincludeパスが必要です。法はintに収まる素数で、0 <= N < modとします。動的modintは構築前に法を設定し、利用中に変更しないでください。保持空間はO(N)です。範囲外引数の扱いはCombinationと同じです。
 
 ## 使用例
 

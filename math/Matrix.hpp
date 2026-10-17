@@ -9,7 +9,7 @@ namespace sora {
 
 // ei1333さんのライブラリを移植。出典: https://ei1333.github.io/luzhiled/snippets/math/matrix.html
 // 行列演算。T の四則演算を O(1) とする。入力はコピーして保持する。
-// 空行列は 0×0 として扱う。高さ0・正の幅の表現には対応しない。
+// 空行列は 0×0 として扱う。高さ0で幅が正の行列は表現できない。
 template<class T>
 struct Matrix {
     std::vector<std::vector<T>> a;
@@ -37,12 +37,12 @@ struct Matrix {
         return a.empty() ? 0 : static_cast<int>(a[0].size());
     }
 
-    // 行への参照。時間 O(1)。
+    // 行への参照を返す。時間 O(1)。
     inline const std::vector<T> &operator[](int k) const {
         return (a.at(k));
     }
 
-    // 行への参照。時間 O(1)。
+    // 行への参照を返す。時間 O(1)。
     inline std::vector<T> &operator[](int k) {
         return (a.at(k));
     }
@@ -120,7 +120,7 @@ struct Matrix {
         return (Matrix(*this) ^= k);
     }
 
-    // 行列を出力。時間 O(NM)。
+    // 行列を出力する。時間 O(NM)。
     friend std::ostream &operator<<(std::ostream &os, Matrix &p) {
         int n = p.height(), m = p.width();
         for(int i = 0; i < n; i++) {
@@ -132,7 +132,7 @@ struct Matrix {
         return (os);
     }
 
-    // 行列を出力。時間 O(NM)。
+    // 行列を出力する。時間 O(NM)。
     friend std::ostream &operator<<(std::ostream &os, Matrix &&p) {
         int n = p.height(), m = p.width();
         for(int i = 0; i < n; i++) {

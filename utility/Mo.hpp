@@ -9,7 +9,7 @@
 
 namespace sora {
 
-// 静的配列の半開区間クエリを並べ替え、端点移動のコールバックで処理する。
+// 静的配列の半開区間クエリを並べ替え、端点の移動に応じたコールバックで処理する。
 // 参考: https://ei1333.hateblo.jp/entry/2017/09/11/211011
 class Mo{
     int N;
@@ -24,7 +24,7 @@ public:
     }
 
     // 時間 O(Q log Q + α(N sqrt(Q) + N))、追加空間 O(Q)。
-    // α は区間更新1回の時間。結果記録1回の時間を O(1) とする。
+    // α は区間を1回更新する時間。結果を1回記録する時間を O(1) とする。
     template<typename AL,typename AR,typename DL,typename DR,typename REM>
     void build(const AL &add_left, const AR &add_right, const DR &del_left, const DL &del_right,const REM &rem){
         int Q=std::ssize(LR);

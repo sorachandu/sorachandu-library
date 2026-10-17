@@ -33,7 +33,7 @@ public:
             }
         }
     
-    // 要素pからk回遷移した要素を返す。時間 O(L)。0 <= k <= K。
+    // 要素pからk回遷移した先の要素を返す。時間 O(L)。0 <= k <= K。
     T query(T p, ull k) const {
         assert(0 <= p && static_cast<unsigned long long>(p) < n && k <= max_steps);
         for(unsigned int i=0;i<levels;i++){

@@ -11,7 +11,7 @@ class Timer{
         // 計測を開始する。時間 O(1)。
         Timer() : start(std::chrono::steady_clock::now()) {}
     
-        // 経過秒数。時間 O(1)。
+        // 経過秒数を返す。時間 O(1)。
         double count() const {
             std::chrono::duration<double> elapsed = std::chrono::steady_clock::now() - start;
             return elapsed.count();

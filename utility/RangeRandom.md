@@ -5,7 +5,7 @@ documentation_of: ./RangeRandom.hpp
 
 ## 概要
 
-std::mt19937とstd::uniform_int_distributionで指定範囲の整数を生成します。空間O(1)（エンジン状態の固定サイズ）。
+std::mt19937とstd::uniform_int_distributionで指定範囲の整数を生成します。エンジンの状態は固定サイズで、空間計算量はO(1)です。
 
 ## API・計算量
 
@@ -17,7 +17,7 @@ std::mt19937とstd::uniform_int_distributionで指定範囲の整数を生成し
 
 ## 仕様・使い方
 
-範囲は半開区間ではなく閉区間で、int64_tのl <= rです。既定範囲は[0, INT64_MAX]。std::random_deviceで初期化するため、同じ乱数列を再現するためのシード指定APIはありません。範囲変更後もエンジンの状態は引き継ぎます。
+範囲は半開区間ではなく閉区間で、int64_tのl <= rです。既定範囲は[0, INT64_MAX]です。std::random_deviceで初期化するため、同じ乱数列を再現するためのシード指定APIはありません。範囲変更後もエンジンの状態は引き継ぎます。
 
 ## 使用例
 

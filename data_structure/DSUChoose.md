@@ -5,7 +5,7 @@ documentation_of: ./DSUChoose.hpp
 
 ## 概要
 
-ランクと経路圧縮による構造上の根と、利用者が選ぶ論理代表元を分けて管理します。Nは頂点数、空間O(N)。
+ランクと経路圧縮による構造上の根と、利用者が選ぶ論理代表元を分けて管理します。Nは頂点数で、空間計算量はO(N)です。
 
 ## API・計算量
 
@@ -19,7 +19,7 @@ documentation_of: ./DSUChoose.hpp
 
 ## 仕様・使い方
 
-chooseには併合前のu側・v側の論理代表元をこの順で渡します。返す頂点は併合後の成分に属する必要があります。同じ成分ならchooseは呼びません。Cはchooseの実行時間です。構造上の根はランクに依存するため、選んだ代表元の取得には`rpr_root`を使います。
+chooseには併合前のu側・v側の論理代表元をこの順で渡します。chooseが返す頂点は併合後の成分に属する必要があります。同じ成分ならchooseは呼びません。Cはchooseの実行時間です。構造上の根はランクに依存するため、選んだ代表元の取得には`rpr_root`を使います。
 
 ## 使用例
 
@@ -36,4 +36,4 @@ int representative = dsu.rpr_root(3);  // 1
 
 ## 検証
 
-`verify/local/DSUAndFolds.local.cpp`で単純解比較・代表元選択を検証します。
+`verify/local/DSUAndFolds.local.cpp`で単純解との比較と代表元選択の検証を行います。

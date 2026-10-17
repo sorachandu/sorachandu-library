@@ -5,7 +5,7 @@ documentation_of: ./DisjointSparseTable.hpp
 
 ## 概要
 
-結合則を持つ演算の区間積を定数時間で求めます。Nは入力長、演算・コピーをO(1)として前処理時間・空間O((N + 1) log(N + 2))。
+結合則を持つ演算の区間積を定数時間で求めます。Nは入力長です。演算・コピーをO(1)とし、前処理の時間・空間計算量はO((N + 1) log(N + 2))です。
 
 ## API・計算量
 
@@ -17,7 +17,7 @@ documentation_of: ./DisjointSparseTable.hpp
 
 ## 仕様・使い方
 
-MはMonoid Conceptを満たす型です。入力は変更しません。更新には非対応で、可換性・冪等性は不要です。0 <= l <= r <= N、空区間では単位元を返します。累積和で扱える群ならより省メモリな構造も検討できます。
+MはMonoid Conceptを満たす型です。入力は変更しません。更新には非対応で、可換性・冪等性は不要です。区間は0 <= l <= r <= Nを満たす必要があります。空区間では単位元を返します。累積和で扱える群ならより省メモリな構造も検討できます。
 
 ## 使用例
 
@@ -38,4 +38,4 @@ auto result = table.prod(1, 3);  // 5
 
 ## 検証
 
-公式問題: `verify/DisjointSparseTable.test.cpp`（最小値）。非可換演算は`verify/local/DSUAndFolds.local.cpp`。
+最小値は公式問題用の`verify/DisjointSparseTable.test.cpp`で、非可換演算はローカルテストの`verify/local/DSUAndFolds.local.cpp`で検証します。

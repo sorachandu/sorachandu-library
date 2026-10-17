@@ -84,7 +84,7 @@ inline long long pollard(long long n) {
 
 } // namespace detail
 
-// 正のsigned 64-bit整数を素因数の昇順列へ分解する。1の結果は空。
+// 正のsigned 64-bit整数を素因数の昇順列へ分解する。1に対しては空を返す。
 // Pollardのロー法の探索時間に依存し、最悪時間は保証しない。
 // 再帰・出力を含む空間O(log n)。
 inline std::vector<long long> prime_factorize(long long n) {

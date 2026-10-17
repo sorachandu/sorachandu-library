@@ -20,7 +20,7 @@ documentation_of: ./SCC.hpp
 
 ## 仕様・使い方
 
-頂点は[0, N)。自己ループ・多重辺・空グラフを扱えます。N・Mはintの範囲内とします。`build`は入力を変更せず、辺追加後も以前の結果は変化しません。
+頂点番号は[0, N)です。自己ループ・多重辺・空グラフを扱えます。N・Mはintの範囲内とします。`build`は入力を変更せず、辺追加後も以前の結果は変化しません。
 
 結果の`id[v]`は頂点vの成分ID、`groups[c]`は成分cの頂点列です。成分間の辺u→vに対し`id[u] < id[v]`となります。`dag`には成分内部の辺を含めず、既定では多重辺を除去します。`indegree`・`outdegree`はそのDAG上の次数です。
 
@@ -44,4 +44,4 @@ int components = result.count();  // 2
 
 ## 検証
 
-公式問題: `verify/SCC.test.cpp`。追加の到達可能性・縮約DAG・次数・閉路・多重辺の比較と20万頂点の鎖は`verify/local/AddedLibraries.local.cpp`。
+公式問題用の`verify/SCC.test.cpp`で検証します。`verify/local/AddedLibraries.local.cpp`では、追加で到達可能性・縮約DAG・次数・閉路・多重辺を比較し、20万頂点の鎖を検証します。

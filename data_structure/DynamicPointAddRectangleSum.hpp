@@ -92,7 +92,7 @@ private:
                 - points.begin());
         }
 
-        // xの添字区間[l, r)かつ圧縮後のy座標がk未満の重みの和。
+        // xの添字が区間[l, r)に属し、圧縮後のy座標がk未満である点の重みの和。
         T less(int l, int r, int k) const {
             if (k == 0 || l == r) return T{};
             if (k == static_cast<int>(ys.size())) return total[r] - total[l];

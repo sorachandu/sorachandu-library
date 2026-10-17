@@ -33,4 +33,4 @@ auto factors = sora::prime_factorize(60);  // 2, 2, 3, 5
 
 ## 検証
 
-公式問題: `verify/PrimalityTest.test.cpp`（素数判定のみ）。素因数分解・64bit境界付近は`verify/local/FastPrimeFact.local.cpp`。
+素数判定のみ、公式問題用の`verify/PrimalityTest.test.cpp`で検証します。素因数分解・64bit境界付近は`verify/local/FastPrimeFact.local.cpp`で検証します。

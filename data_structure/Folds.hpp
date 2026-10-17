@@ -38,25 +38,25 @@ public:
         return suffix[l];
     }
 
-    // 0-indexedの半開区間[l, r)を除く積。時間O(1)。空区間なら全体の積。
+    // 0-indexedの半開区間[l, r)を除いた積。時間O(1)。空区間なら全体の積。
     T fold_without_range(int l, int r) const {
         assert(0 <= l && l <= r && r <= n);
         return M::op(prefix[l], suffix[r]);
     }
 
-    // 0-indexedの要素iを除く積。時間O(1)。
+    // 0-indexedの要素iを除いた積。時間O(1)。
     T fold_without1(int i) const {
         assert(0 <= i && i < n);
         return fold_without_range(i, i + 1);
     }
 
-    // 1-indexedの閉区間[l, r]を除く積。旧実装と同じ仕様。時間O(1)。
+    // 1-indexedの閉区間[l, r]を除いた積。旧実装と同じ仕様。時間O(1)。
     T fold_without_range_one_indexed(int l, int r) const {
         assert(1 <= l && l <= r && r <= n);
         return fold_without_range(l - 1, r);
     }
 
-    // 1-indexedの要素iを除く積。旧実装と同じ仕様。時間O(1)。
+    // 1-indexedの要素iを除いた積。旧実装と同じ仕様。時間O(1)。
     T fold_without1_one_indexed(int i) const {
         assert(1 <= i && i <= n);
         return fold_without1(i - 1);

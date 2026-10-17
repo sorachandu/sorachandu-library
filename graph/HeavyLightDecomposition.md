@@ -5,7 +5,7 @@ documentation_of: ./HeavyLightDecomposition.hpp
 
 ## 概要
 
-木を重いパスに分解し、頂点を配列の添字に対応付けます。パスを区間へ分け、Fenwick Tree等と組み合わせて使えます。Nは頂点数、保持空間O(N)。
+木を重いパスに分解し、頂点を配列の添字に対応付けます。パスを区間へ分け、Fenwick Tree等と組み合わせて使えます。Nは頂点数で、保持空間はO(N)です。
 
 ## API・計算量
 
@@ -24,11 +24,11 @@ documentation_of: ./HeavyLightDecomposition.hpp
 
 ## 仕様・使い方
 
-空でない連結な無向木が必要です。頂点は[0, N)。入力は値渡しでコピーし、呼び出し元の木を変更しません。構築は再帰を使い、最悪深さO(N)です。
+空でない連結な無向木が必要です。頂点番号は[0, N)です。入力は値渡しでコピーし、呼び出し元の木を変更しません。構築は再帰を使い、最悪深さO(N)です。
 
 部分木は`[to_seq(v), to_seq(v) + 部分木サイズ)`の連続区間になります。`heavy_path`は配列添字ではなく頂点番号を返します。stop_at_vertex=falseならvより先のパス末尾まで含めます。
 
-laのdは「上る辺数」ではなく目標の深さで、0 <= d <= depth(v)です。jumpはi >= 0、i = 0ならu、パス長を超えれば−1です。normalize_pairは引数を変更します。
+laのdは「上る辺数」ではなく目標の深さで、0 <= d <= depth(v)です。jumpにはi >= 0を指定します。i = 0ならu、iがパス長を超えれば−1を返します。normalize_pairは引数を変更します。
 
 ## 使用例
 
@@ -46,4 +46,4 @@ int vertex = hld.jump(1, 2, 1);  // 0
 
 ## 検証
 
-公式問題: `verify/VertexAddPathSum.test.cpp`（Fenwick Treeとの組み合わせ）。各種移動・パス取得は`verify/local/TreeAlgorithms.local.cpp`。
+Fenwick Treeとの組み合わせは公式問題用の`verify/VertexAddPathSum.test.cpp`で検証します。各種移動・パス取得は`verify/local/TreeAlgorithms.local.cpp`で検証します。
