@@ -10,7 +10,8 @@ on:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    # Ruby 3.1はUbuntu 26.04に対応していないため、ビルド環境を固定する。
+    runs-on: ubuntu-24.04
 
     permissions:
       contents: write
