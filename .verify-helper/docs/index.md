@@ -66,6 +66,8 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 
 - [Geometry2D：整数のCCW・線分交差・凸包・多角形、型を選べる距離・交点]({{ '/geometry/Geometry2D.hpp.html' | relative_url }})
 
+- [ArgumentSort：整数の外積による偏角ソート]({{ '/geometry/ArgumentSort.hpp.html' | relative_url }})
+
 - [RangeRandom：範囲付き整数乱数]({{ '/utility/RangeRandom.hpp.html' | relative_url }})
 - [Timer：経過時間の計測]({{ '/utility/Timer.hpp.html' | relative_url }})
 
