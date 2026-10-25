@@ -35,6 +35,7 @@ documentation_of: ./ArgumentSort.hpp
 
 ## 使用例
 
+{% raw %}
 ```cpp
 #include "geometry/ArgumentSort.hpp"
 #include <cassert>
@@ -48,6 +49,7 @@ int main() {
     assert(points == expected);
 }
 ```
+{% endraw %}
 
 ## 検証コードと検証範囲
 

@@ -5,7 +5,9 @@
 #include <cmath>
 #include <cstddef>
 #include <functional>
+#include <istream>
 #include <optional>
+#include <ostream>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -34,6 +36,20 @@ struct Point {
     template <class R>
     constexpr Point<R> cast() const { return {static_cast<R>(x), static_cast<R>(y)}; }
 };
+
+// x、yの順に読み込み、pを書き換える。状態と失敗時の挙動はTの入力演算に従う。
+// 時間はTの入力2回分、追加空間O(1)。入力ストリームを返す。
+template <class T, class C>
+std::istream& operator>>(std::istream& input, Point<T, C>& p) {
+    return input >> p.x >> p.y;
+}
+
+// x、空白1文字、yの順に出力する。改行は付けない。
+// 時間はTの出力2回分、追加空間O(1)。出力ストリームを返す。
+template <class T, class C>
+std::ostream& operator<<(std::ostream& output, const Point<T, C>& p) {
+    return output << p.x << ' ' << p.y;
+}
 
 template <class T, class C = DefaultCalculation<T>>
 using Vector = Point<T, C>;

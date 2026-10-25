@@ -2,6 +2,8 @@
 #include <cassert>
 #include <cmath>
 #include <random>
+#include <iomanip>
+#include <sstream>
 #include <vector>
 
 namespace geo = sora;
@@ -25,6 +27,27 @@ bool intersection(S a, S b) {
 }
 
 int main() {
+    std::istringstream input("-3 7 2 -4");
+    P first, second;
+    assert(&(input >> first >> second) == &input);
+    assert(first == P(-3, 7) && second == P(2, -4));
+    std::ostringstream output;
+    assert(&(output << first << '\n' << second) == &output);
+    assert(output.str() == "-3 7\n2 -4");
+    std::istringstream real_input("1.25 -2.5");
+    sora::Point<double, long double> real_point;
+    assert(real_input >> real_point);
+    std::ostringstream real_output;
+    real_output << std::fixed << std::setprecision(2) << real_point;
+    assert(real_output.str() == "1.25 -2.50");
+    std::istringstream invalid("5 invalid");
+    invalid >> first;
+    assert(invalid.fail() && first.x == 5);
+    std::istringstream failed("8 9");
+    failed.setstate(std::ios::failbit);
+    first = P(3, 4);
+    failed >> first;
+    assert(first == P(3, 4));
     P a{0,0}, b{2,0};
     assert(geo::ccw(a,b,P{0,1})==1 && geo::ccw(a,b,P{0,-1})==-1);
     assert(geo::ccw(a,b,P{-1,0})==2 && geo::ccw(a,b,P{3,0})==-2);
