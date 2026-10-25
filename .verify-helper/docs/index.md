@@ -64,7 +64,8 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 
 ### 幾何・実行補助
 
-- [Geometry：平面幾何の基本型（旧実装）]({{ '/geometry/Geometry.hpp.html' | relative_url }})
+- [Geometry2D：整数のCCW・線分交差・凸包・多角形、型を選べる距離・交点]({{ '/geometry/Geometry2D.hpp.html' | relative_url }})
+
 - [RangeRandom：範囲付き整数乱数]({{ '/utility/RangeRandom.hpp.html' | relative_url }})
 - [Timer：経過時間の計測]({{ '/utility/Timer.hpp.html' | relative_url }})
 
