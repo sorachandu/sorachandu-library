@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-// ライブラリ出典: https://github.com/sorachandu/sorachandu-library
+// ライブラリ出典: https://sorachandu.github.io/sorachandu-library/
 #define rep(i,l,r) for(int i=(l);i<(r);i++)
 using ll=long long;
 template<typename T1,typename T2>inline bool chmin(T1 &a,T2 b){ return (a>b?a=b,true:false); }

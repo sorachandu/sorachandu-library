@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #pragma region templates
-// ライブラリ出典: https://github.com/sorachandu/sorachandu-library
+// ライブラリ出典: https://sorachandu.github.io/sorachandu-library/
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); cout << setprecision(13); } }init;
 
 using ll  = long long;
