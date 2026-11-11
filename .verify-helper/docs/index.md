@@ -20,6 +20,7 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 ### 区間クエリ・集合・遷移
 
 - [FenwickTree：点加算・区間和]({{ '/data_structure/FenwickTree.hpp.html' | relative_url }})
+- [WaveletMatrix：静的区間のk番目・頻度・前後の値]({{ '/data_structure/WaveletMatrix.hpp.html' | relative_url }})
 - [DisjointSparseTable：静的区間積]({{ '/data_structure/DisjointSparseTable.hpp.html' | relative_url }})
 - [Folds：左右累積積]({{ '/data_structure/Folds.hpp.html' | relative_url }})
 - [IntervalSet：整数区間の集合]({{ '/data_structure/IntervalSet.hpp.html' | relative_url }})
