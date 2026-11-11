@@ -19,6 +19,8 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 
 ### 区間クエリ・集合・遷移
 
+- [LazySegmentTree：区間更新・区間積・境界探索]({{ '/data_structure/LazySegmentTree.hpp.html' | relative_url }})
+- [SegmentTree：点更新・区間積・境界探索]({{ '/data_structure/SegmentTree.hpp.html' | relative_url }})
 - [FenwickTree：点加算・区間和]({{ '/data_structure/FenwickTree.hpp.html' | relative_url }})
 - [WaveletMatrix：静的区間のk番目・頻度・前後の値]({{ '/data_structure/WaveletMatrix.hpp.html' | relative_url }})
 - [DisjointSparseTable：静的区間積]({{ '/data_structure/DisjointSparseTable.hpp.html' | relative_url }})
@@ -54,6 +56,7 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 
 ### 数学
 
+- [LazyMonoid：遅延セグメント木の作用付きモノイド]({{ '/math/LazyMonoid.hpp.html' | relative_url }})
 - [Monoid：モノイドのConcept]({{ '/math/Monoid.hpp.html' | relative_url }})
 - [Combination：素数法の階乗・二項係数]({{ '/math/Combination.hpp.html' | relative_url }})
 - [AtCoderCombination：ACL modint用の別名]({{ '/math/AtCoderCombination.hpp.html' | relative_url }})
