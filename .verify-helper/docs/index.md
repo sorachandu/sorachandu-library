@@ -26,6 +26,7 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 - [DisjointSparseTable：静的区間積]({{ '/data_structure/DisjointSparseTable.hpp.html' | relative_url }})
 - [Folds：左右累積積]({{ '/data_structure/Folds.hpp.html' | relative_url }})
 - [IntervalSet：整数区間の集合]({{ '/data_structure/IntervalSet.hpp.html' | relative_url }})
+- [RectangleSum：静的な点集合の長方形和]({{ '/data_structure/RectangleSum.hpp.html' | relative_url }})
 - [DynamicPointAddRectangleSum：オンライン点加算・長方形和]({{ '/data_structure/DynamicPointAddRectangleSum.hpp.html' | relative_url }})
 - [RangeDistinctCount：区間・値域内の種類数]({{ '/data_structure/RangeDistinctCount.hpp.html' | relative_url }})
 - [Doubling：遷移関数の繰り返し]({{ '/data_structure/Doubling.hpp.html' | relative_url }})
