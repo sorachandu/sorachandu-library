@@ -37,11 +37,16 @@ python3 verify/RunLocalTests.py --acl /path/to/ac-library
 篩、圧縮、Doubling、Trie、LowLink、LCA、ポテンシャル付きUF、
 行列、RLE、RollingHash、累乗、乱数範囲、時間計測を検証します。
 
+乱数生成の管理対象は`RandomGenerator`です。
+`HeaderMigration.local.cpp`にある`RangeRandom`の生成範囲テストは、ヘッダ移行時の検証として残っています。
+`RangeRandom`は今後の管理対象から外し、リポジトリ外へアーカイブする予定です。
+
 追加のローカル検証:
 
 - `DSUAndFolds.local.cpp`: DSU2種の単純解比較、20万頂点の鎖、非可換モノイドによるFolds/DSTの検証。
 - `Combination.local.cpp`: ACL非依存のテスト型で、Pascalの三角形・積による単純解と比較。
 - `AtCoderCombination.local.cpp`: 外部ACLの静的・動的modintで検証（任意実行）。
+- `RandomGenerator.local.cpp`: 固定seed・状態復元、数値・抽出・順列・文字列・分割・木・グラフの生成条件を検証。
 
 ACL向けヘッダ・検証コードをコンパイルするときは、外部に配置したACLへの
 includeパスを指定してください（ACL本体はこのリポジトリに同梱しません）。

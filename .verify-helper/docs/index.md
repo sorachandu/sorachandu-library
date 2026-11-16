@@ -21,7 +21,7 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 
 - [LazySegmentTree：区間更新・区間積・境界探索]({{ '/data_structure/LazySegmentTree.hpp.html' | relative_url }})
 - [SegmentTree：点更新・区間積・境界探索]({{ '/data_structure/SegmentTree.hpp.html' | relative_url }})
-- [FenwickTree：点加算・区間和]({{ '/data_structure/FenwickTree.hpp.html' | relative_url }})
+- [FenwickTree：点更新・区間和・境界探索]({{ '/data_structure/FenwickTree.hpp.html' | relative_url }})
 - [WaveletMatrix：静的区間のk番目・頻度・前後の値]({{ '/data_structure/WaveletMatrix.hpp.html' | relative_url }})
 - [DisjointSparseTable：静的区間積]({{ '/data_structure/DisjointSparseTable.hpp.html' | relative_url }})
 - [Folds：左右累積積]({{ '/data_structure/Folds.hpp.html' | relative_url }})
@@ -73,7 +73,7 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 
 - [ArgumentSort：整数の外積による偏角ソート]({{ '/geometry/ArgumentSort.hpp.html' | relative_url }})
 
-- [RangeRandom：範囲付き整数乱数]({{ '/utility/RangeRandom.hpp.html' | relative_url }})
+- [RandomGenerator：乱数・抽出・順列・文字列・木・グラフのテストケース生成]({{ '/utility/RandomGenerator.hpp.html' | relative_url }})
 - [Timer：経過時間の計測]({{ '/utility/Timer.hpp.html' | relative_url }})
 
 ## ドキュメントの更新

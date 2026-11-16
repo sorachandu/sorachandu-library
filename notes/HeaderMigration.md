@@ -5,6 +5,10 @@
 提出用の `template.cpp` と `Simple_template.cpp` は維持しています。
 `snippets/cpp.json` は変更していません。今回変更したAPIとの同期は別途行う必要があります。
 
+この文書はヘッダ移行時の記録です。
+`RangeRandom`は今後の管理対象から外し、リポジトリ外へアーカイブする予定です。
+現在の乱数生成には`utility/RandomGenerator.hpp`を使用してください。
+
 ## 今回移行したもの
 
 | ヘッダ | 主なAPI・変更 | 時間計算量 | 保持空間 |
