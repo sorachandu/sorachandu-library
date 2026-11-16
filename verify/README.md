@@ -33,13 +33,11 @@ python3 verify/RunLocalTests.py --acl /path/to/ac-library
 その他のルート直下の `.cpp` は未移行です。
 `template.cpp` と `Simple_template.cpp` は提出用テンプレートとして維持しています。
 
-`HeaderMigration.local.cpp` は移行した13ヘッダの境界ケースと単純解比較を行います。
+`HeaderMigration.local.cpp` は移行した12ヘッダの境界ケースと単純解比較を行います。
 篩、圧縮、Doubling、Trie、LowLink、LCA、ポテンシャル付きUF、
-行列、RLE、RollingHash、累乗、乱数範囲、時間計測を検証します。
+行列、RLE、RollingHash、累乗、時間計測を検証します。
 
 乱数生成の管理対象は`RandomGenerator`です。
-`HeaderMigration.local.cpp`にある`RangeRandom`の生成範囲テストは、ヘッダ移行時の検証として残っています。
-`RangeRandom`は今後の管理対象から外し、リポジトリ外へアーカイブする予定です。
 
 追加のローカル検証:
 

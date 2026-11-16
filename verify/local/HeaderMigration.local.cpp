@@ -19,7 +19,6 @@
 #include "../../string/RollingHash.hpp"
 #include "../../utility/RunLengthEncoding.hpp"
 #include "../../string/Trie.hpp"
-#include "../../utility/RangeRandom.hpp"
 #include "../../utility/Timer.hpp"
 
 // ヘッダ移行に伴う境界ケースと、単純解との比較を行うローカル検証。
@@ -232,10 +231,6 @@ int main() {
         }
     }
     {
-        sora::RangeRandom random(-3, 7);
-        for (int i = 0; i < 1000; ++i) { auto x = random(); assert(-3 <= x && x <= 7); }
-        random.set_range(5, 5);
-        assert(random.gen() == 5 && random.get_range() == std::make_pair(std::int64_t{5}, std::int64_t{5}));
         sora::Timer timer;
         auto start = timer.count();
         assert(start >= 0 && timer.count() >= start && timer.is_under(3600));
