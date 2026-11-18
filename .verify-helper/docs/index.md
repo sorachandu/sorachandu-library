@@ -54,6 +54,7 @@ assert・ランダムテストは別途、GitHub Actionsの `Run local tests` �
 - [MultipleSort：複数配列の同時ソート]({{ '/utility/MultipleSort.hpp.html' | relative_url }})
 - [Trie：小文字英字の多重集合]({{ '/string/Trie.hpp.html' | relative_url }})
 - [RollingHash：文字列の部分ハッシュ]({{ '/string/RollingHash.hpp.html' | relative_url }})
+- [RollingHashMonoid：セグメント木に載せる文字列連結ハッシュ]({{ '/string/RollingHashMonoid.hpp.html' | relative_url }})
 
 ### 数学
 
